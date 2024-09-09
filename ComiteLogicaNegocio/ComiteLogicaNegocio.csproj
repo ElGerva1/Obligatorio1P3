@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Excepciones\" />
+    <Folder Include="InterfacesCasoUso\" />
+    <Folder Include="InterfacesDominio\" />
+    <Folder Include="InterfacesRepositorio\" />
+    <Folder Include="Vo\" />
+  </ItemGroup>
+
+</Project>
