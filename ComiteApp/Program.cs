@@ -1,3 +1,10 @@
+using ComiteLogicaNegocio.CasoUso.Usuarios;
+using ComiteLogicaNegocio.Entidades;
+using ComiteLogicaNegocio.InterfacesCasoUso;
+using ComiteLogicaNegocio.InterfacesRepositorios;
+using ComiteAccesoADatos.EF;
+using ComiteLogicaAplicacion.CasoUso.Usuarios;
+
 namespace ComiteApp
 {
     public class Program
@@ -9,6 +16,15 @@ namespace ComiteApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            // inyecto los repositorios
+            builder.Services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
+
+            // intetecto los caso de uso
+            builder.Services.AddScoped<IAlta<Usuario>, AltaUsuario>();
+            builder.Services.AddScoped<IObtenerTodos<Usuario>, ObtenerUsuarios>();
+
+            // inyectando la Comite Contex
+            builder.Services.AddDbContext<ComiteContext>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -28,7 +44,7 @@ namespace ComiteApp
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Usuario}/{action=Index}/{id?}");
 
             app.Run();
         }

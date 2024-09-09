@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CasoUso\" />
     <Folder Include="Excepciones\" />
     <Folder Include="DTO\" />
   </ItemGroup>
