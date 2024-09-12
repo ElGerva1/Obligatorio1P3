@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="InterfacesDominio\" />
-    <Folder Include="Vo\" />
   </ItemGroup>
 
 </Project>
