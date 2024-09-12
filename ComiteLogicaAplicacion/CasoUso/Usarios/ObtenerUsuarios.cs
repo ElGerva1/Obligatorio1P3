@@ -1,10 +1,12 @@
-﻿using ComiteLogicaNegocio.Entidades;
+﻿using ComiteCompartido.Dtos.Mappers;
+using ComiteCompartido.Dtos.Usuarios;
+using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesCasoUso;
 using ComiteLogicaNegocio.InterfacesRepositorios;
 
 namespace ComiteLogicaAplicacion.CasoUso.Usuarios
 {
-    public class ObtenerUsuarios : IObtenerTodos<Usuario>
+    public class ObtenerUsuarios : IObtenerTodos<UsuarioListadoDto>
     {
         IRepositorioUsuario _repositorio;
 
@@ -12,9 +14,9 @@ namespace ComiteLogicaAplicacion.CasoUso.Usuarios
         {
             _repositorio = repositorio;
         }
-        public IEnumerable<Usuario> Ejecutar()
+        public IEnumerable<UsuarioListadoDto> Ejecutar()
         {
-            return _repositorio.GetAll();
+            return UsuarioMapper.ToListaDto(_repositorio.GetAll());
         }
     }
 }

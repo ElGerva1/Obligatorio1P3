@@ -1,11 +1,13 @@
 ﻿
+using ComiteCompartido.Dtos.Mappers;
+using ComiteCompartido.Dtos.Usuarios;
 using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesCasoUso;
 using ComiteLogicaNegocio.InterfacesRepositorios;
 
 namespace ComiteLogicaAplicacion.CasoUso.Usuarios
 {
-    public class AltaUsuario : IAlta<Usuario>
+    public class AltaUsuario : IAlta<UsuarioAltaDto>
     {
         IRepositorioUsuario _repositorio;
 
@@ -14,9 +16,9 @@ namespace ComiteLogicaAplicacion.CasoUso.Usuarios
             _repositorio = repositorio;
         }
 
-        public void Ejecutar(Usuario obj)
+        public void Ejecutar(UsuarioAltaDto obj)
         {
-            _repositorio.Add(obj);
+            _repositorio.Add(UsuarioMapper.FromDto(obj));
         }
     }
 }

@@ -7,12 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTO\**" />
+    <EmbeddedResource Remove="DTO\**" />
+    <None Remove="DTO\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Excepciones\" />
-    <Folder Include="DTO\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ComiteAccesoADatos\ComiteAccesoADatos.csproj" />
+    <ProjectReference Include="..\ComiteCompartido\ComiteCompartido.csproj" />
     <ProjectReference Include="..\ComiteLogicaNegocio\ComiteLogicaNegocio.csproj" />
   </ItemGroup>
 

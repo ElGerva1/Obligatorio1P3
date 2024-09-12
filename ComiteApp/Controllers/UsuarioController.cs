@@ -6,17 +6,18 @@ using ComiteLogicaNegocio.InterfacesCasoUso;
 using ComiteApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using ComiteCompartido.Dtos.Usuarios;
 
 namespace ComiteApp.Controllers
 {
     public class UsuarioController : Controller
     {
-        IAlta<Usuario> _alta;
-        IObtenerTodos<Usuario> _obtenerTodos;
+        IAlta<UsuarioAltaDto> _alta;
+        IObtenerTodos<UsuarioListadoDto> _obtenerTodos;
 
         public UsuarioController(
-            IAlta<Usuario> alta,
-            IObtenerTodos<Usuario> obtenerTodos
+            IAlta<UsuarioAltaDto> alta,
+            IObtenerTodos<UsuarioListadoDto> obtenerTodos
             )
         {
             _alta = alta;
@@ -37,14 +38,11 @@ namespace ComiteApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(VMUsuario usuario)
+        public IActionResult Create(UsuarioAltaDto usuario)
         {
             try
             {
-                Usuario unU = new Usuario(
-                                      usuario.Email,
-                                      usuario.Password);
-                _alta.Ejecutar(unU);
+                _alta.Ejecutar(usuario);
                 return RedirectToAction("Index");
             }
             catch (EmailUsuarioInvalidoException)

@@ -13,7 +13,7 @@ namespace ComiteLogicaNegocio.Vo.Generic
         {
             if (string.IsNullOrEmpty(value) )
             {
-                throw new PasswordException("El nombre no puede ser vacio");
+                throw new PasswordException("La contraseña no puede ser vacia");
             }
             this.Value = value; 
         }
