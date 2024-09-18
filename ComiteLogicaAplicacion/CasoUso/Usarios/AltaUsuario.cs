@@ -18,7 +18,16 @@ namespace ComiteLogicaAplicacion.CasoUso.Usuarios
 
         public void Ejecutar(UsuarioAltaDto obj)
         {
+            try
+            {
+
             _repositorio.Add(UsuarioMapper.FromDto(obj));
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using ComiteApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using ComiteCompartido.Dtos.Usuarios;
+using ComiteLogicaNegocio.Vo.Excepciones;
 
 namespace ComiteApp.Controllers
 {
@@ -45,9 +46,9 @@ namespace ComiteApp.Controllers
                 _alta.Ejecutar(usuario);
                 return RedirectToAction("Index");
             }
-            catch (EmailUsuarioInvalidoException)
+            catch (EmailException e)
             {
-                ViewBag.Message = "Creo que te has equivocado en el mail";
+                ViewBag.Message = e.Message;
             }
             catch (LogicaNegocioException e)
             {
