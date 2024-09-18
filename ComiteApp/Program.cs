@@ -4,6 +4,7 @@ using ComiteLogicaNegocio.InterfacesCasoUso;
 using ComiteLogicaNegocio.InterfacesRepositorios;
 using ComiteAccesoADatos.EF;
 using ComiteLogicaAplicacion.CasoUso.Usuarios;
+using ComiteCompartido.Dtos.Usuarios;
 
 namespace ComiteApp
 {
@@ -20,8 +21,8 @@ namespace ComiteApp
             builder.Services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
 
             // intetecto los caso de uso
-            builder.Services.AddScoped<IAlta<Usuario>, AltaUsuario>();
-            builder.Services.AddScoped<IObtenerTodos<Usuario>, ObtenerUsuarios>();
+            builder.Services.AddScoped<IAlta<UsuarioAltaDto>, AltaUsuario>();
+            builder.Services.AddScoped<IObtenerTodos<UsuarioListadoDto>, ObtenerUsuarios>();
 
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();

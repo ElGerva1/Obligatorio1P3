@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ComiteCompartido\ComiteCompartido.csproj" />
     <ProjectReference Include="..\ComiteLogicaAplicacion\ComiteLogicaAplicacion.csproj" />
     <ProjectReference Include="..\ComiteLogicaNegocio\ComiteLogicaNegocio.csproj" />
   </ItemGroup>

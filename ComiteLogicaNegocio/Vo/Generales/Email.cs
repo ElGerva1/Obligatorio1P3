@@ -13,7 +13,7 @@ namespace ComiteLogicaNegocio.Vo.Generic
         {
             if (string.IsNullOrEmpty(value) )
             {
-                throw new EmailException("El nombre no puede ser vacio");
+                throw new EmailException("El email no puede ser vacio");
             }
             this.Value = value; 
         }

@@ -1,4 +1,5 @@
 ﻿using ComiteLogicaNegocio.Entidades;
+using Libreria.LogicaAccesoDatos.EF.Config;
 using Microsoft.EntityFrameworkCore;
 
 namespace ComiteAccesoADatos.EF
@@ -20,6 +21,7 @@ namespace ComiteAccesoADatos.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
         }
 
 
