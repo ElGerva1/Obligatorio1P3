@@ -1,7 +1,7 @@
 ﻿
 namespace ComiteCompartido.Dtos.Usuarios
 {
-    public record UsuarioObtenerDto(
+    public record UsuarioAltaDto (
         int Id,
         string Email,
         string Password

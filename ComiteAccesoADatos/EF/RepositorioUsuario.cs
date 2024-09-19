@@ -31,5 +31,13 @@ namespace ComiteAccesoADatos.EF
         {
             throw new NotImplementedException();
         }
+        public Usuario GetByEmailPass(string email, string pass) {
+            foreach (Usuario u in _context.usuarios) {
+                if (u.Email.Value == email && u.Password.Value == pass) {
+                    return u;
+                }
+            }
+                return null;
+        }
     }
 }
