@@ -8,11 +8,26 @@ namespace ComiteCompartido.Dtos.Mappers
 {
     public class UsuarioMapper
     {
-        public static Usuario FromDto(UsuarioAltaDto usuario)
+        public static Digitador FromDto(UsuarioAltaDto usuario)
         {
-            return new Usuario(usuario.Id, new Email(usuario.Email), new Password(usuario.Password));
+            return new Digitador(usuario.Id, usuario.Email, usuario.Password);
         }
 
+        public static UsuarioAltaDto ToDto(Usuario? usuario)
+        {
+            bool admin = false;
+            if (usuario.Discriminator == "Admin")
+            {
+                admin = true;
+            }
+
+            return new UsuarioAltaDto(
+                    usuario.ID,
+                    usuario.Email.Value,
+                    usuario.Password.Value,
+                    admin
+                );
+        }
 
         public static IEnumerable<UsuarioListadoDto> ToListaDto(IEnumerable<Usuario> usuarios)
         {            

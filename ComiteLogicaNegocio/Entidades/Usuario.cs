@@ -3,7 +3,7 @@ using ComiteLogicaNegocio.Vo.Generic;
 
 namespace ComiteLogicaNegocio.Entidades
 {
-    public class Usuario
+    public abstract class Usuario
     {
         private string email;
         private string password;
@@ -11,21 +11,21 @@ namespace ComiteLogicaNegocio.Entidades
         public int ID { get; set; }
         public Email Email { get; set; }
         public Password Password { get; set; }
-    protected Usuario() { }
-    public Usuario(int id,
-           Email email,
-           Password password)
-    {
+        public string Discriminator { get; set; }
 
-        Email = email;
-        Password = password;
-        Validar();
-    }
+        protected Usuario() { }
+        public Usuario(int id,
+               Email email,
+               Password password)
+        {
 
-
+            Email = email;
+            Password = password;
+            Validar();
+        }
         private void Validar()
-    {
-    }
+        {
+        }
 
     }
 }
