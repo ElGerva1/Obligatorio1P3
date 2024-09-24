@@ -9,7 +9,7 @@ namespace ComiteLogicaNegocio.Entidades
 {
     public class Digitador : Usuario
     {
-        public Admin adminRegistro { get; set; }
+      //  public Admin adminRegistro { get; set; }
         protected Digitador()
         {
         }

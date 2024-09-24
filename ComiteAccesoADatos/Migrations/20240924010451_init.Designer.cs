@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComiteAccesoADatos.Migrations
 {
     [DbContext(typeof(ComiteContext))]
-    [Migration("20240924004739_init")]
+    [Migration("20240924010451_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -75,23 +75,7 @@ namespace ComiteAccesoADatos.Migrations
                 {
                     b.HasBaseType("ComiteLogicaNegocio.Entidades.Usuario");
 
-                    b.Property<int>("adminRegistroID")
-                        .HasColumnType("int");
-
-                    b.HasIndex("adminRegistroID");
-
                     b.HasDiscriminator().HasValue("Digitador");
-                });
-
-            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Digitador", b =>
-                {
-                    b.HasOne("ComiteLogicaNegocio.Entidades.Admin", "adminRegistro")
-                        .WithMany()
-                        .HasForeignKey("adminRegistroID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("adminRegistro");
                 });
 #pragma warning restore 612, 618
         }

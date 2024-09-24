@@ -72,23 +72,7 @@ namespace ComiteAccesoADatos.Migrations
                 {
                     b.HasBaseType("ComiteLogicaNegocio.Entidades.Usuario");
 
-                    b.Property<int>("adminRegistroID")
-                        .HasColumnType("int");
-
-                    b.HasIndex("adminRegistroID");
-
                     b.HasDiscriminator().HasValue("Digitador");
-                });
-
-            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Digitador", b =>
-                {
-                    b.HasOne("ComiteLogicaNegocio.Entidades.Admin", "adminRegistro")
-                        .WithMany()
-                        .HasForeignKey("adminRegistroID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("adminRegistro");
                 });
 #pragma warning restore 612, 618
         }

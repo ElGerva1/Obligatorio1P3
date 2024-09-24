@@ -20,24 +20,12 @@ namespace ComiteAccesoADatos.Migrations
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    fecRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    adminRegistroID = table.Column<int>(type: "int", nullable: true)
+                    fecRegistro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_usuarios", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_usuarios_usuarios_adminRegistroID",
-                        column: x => x.adminRegistroID,
-                        principalTable: "usuarios",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_usuarios_adminRegistroID",
-                table: "usuarios",
-                column: "adminRegistroID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_usuarios_Email",
