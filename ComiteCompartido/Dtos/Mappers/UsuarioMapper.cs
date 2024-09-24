@@ -20,6 +20,10 @@ namespace ComiteCompartido.Dtos.Mappers
             {
                 admin = true;
             }
+            else
+            {
+                // Si es digitador preciso el id del admin que lo creo
+            }
 
             return new UsuarioAltaDto(
                     usuario.ID,
