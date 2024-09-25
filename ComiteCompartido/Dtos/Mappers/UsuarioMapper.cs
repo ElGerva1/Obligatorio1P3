@@ -8,8 +8,10 @@ namespace ComiteCompartido.Dtos.Mappers
 {
     public class UsuarioMapper
     {
-        public static Digitador FromDto(UsuarioAltaDto usuario)
+        public static Usuario FromDto(UsuarioAltaDto usuario)
         {
+            if (usuario.isAdmin)
+                return new Admin(usuario.Id, usuario.Email, usuario.Password);
             return new Digitador(usuario.Id, usuario.Email, usuario.Password);
         }
 

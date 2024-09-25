@@ -5,7 +5,7 @@ namespace ComiteCompartido.Dtos.Usuarios
         int Id,
         string Email,
         string Password,
-        bool Admin
+        bool isAdmin = true
         )
     {
     }
