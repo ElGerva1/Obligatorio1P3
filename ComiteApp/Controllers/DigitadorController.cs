@@ -10,12 +10,12 @@ using ComiteCompartido.Dtos.Usuarios;
 
 namespace ComiteApp.Controllers
 {
-    public class UsuarioController : Controller
+    public class DigitadorController : Controller
     {
         IAlta<UsuarioAltaDto> _alta;
         IObtenerTodos<UsuarioListadoDto> _obtenerTodos;
 
-        public UsuarioController(
+        public DigitadorController(
             IAlta<UsuarioAltaDto> alta,
             IObtenerTodos<UsuarioListadoDto> obtenerTodos
             )

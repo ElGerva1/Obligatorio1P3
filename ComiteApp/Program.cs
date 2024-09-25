@@ -23,9 +23,14 @@ namespace ComiteApp
             // intetecto los caso de uso
             builder.Services.AddScoped<IAlta<UsuarioAltaDto>, AltaUsuario>();
             builder.Services.AddScoped<IObtenerTodos<UsuarioListadoDto>, ObtenerUsuarios>();
+            builder.Services.AddScoped<IObtener<UsuarioAltaDto>, ObtenerUsuario>();
 
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();
+
+            builder.Services.AddSession();
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -43,9 +48,11 @@ namespace ComiteApp
 
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Usuario}/{action=Index}/{id?}");
+                pattern: "{controller=Login}/{action=Login}/{id?}");
 
             app.Run();
         }

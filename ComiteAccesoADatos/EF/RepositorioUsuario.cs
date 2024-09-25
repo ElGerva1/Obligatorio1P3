@@ -29,7 +29,29 @@ namespace ComiteAccesoADatos.EF
 
         public Usuario GetById(int id)
         {
-            throw new NotImplementedException();
+            Usuario? unUsuario = null;
+            unUsuario =
+                _context.usuarios
+                .FirstOrDefault(usuario => usuario.ID == id);
+            if (unUsuario == null)
+            {
+                throw new Exception($"No se encontro la el usuario con id {id}");
+            }
+            return unUsuario;
+        }
+
+        public Usuario GetByEmail(string email)
+        {
+            Usuario? unUsuario = null;
+            unUsuario =
+                _context.usuarios
+                .AsEnumerable()
+                .FirstOrDefault(usuario => usuario.Email.Value == email);
+            if (unUsuario == null)
+            {
+                throw new Exception($"No se encontro la el usuario con email {email}");
+            }
+            return unUsuario;
         }
     }
 }
