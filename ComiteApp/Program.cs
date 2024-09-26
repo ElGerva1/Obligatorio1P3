@@ -23,6 +23,7 @@ namespace ComiteApp
             // intetecto los caso de uso
             builder.Services.AddScoped<IAlta<UsuarioAltaDto>, AltaUsuario>();
             builder.Services.AddScoped<IObtenerTodos<UsuarioListadoDto>, ObtenerUsuarios>();
+            builder.Services.AddScoped<IObtener<UsuarioObtenerDto>, ObtenerUsuario>();
 
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();
