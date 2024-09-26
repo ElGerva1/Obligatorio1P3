@@ -24,6 +24,8 @@ namespace ComiteApp
             builder.Services.AddScoped<IAlta<UsuarioAltaDto>, AltaUsuario>();
             builder.Services.AddScoped<IObtenerTodos<UsuarioListadoDto>, ObtenerUsuarios>();
             builder.Services.AddScoped<IObtener<UsuarioAltaDto>, ObtenerUsuario>();
+            builder.Services.AddScoped<IEliminar<UsuarioAltaDto>, EliminarUsuario>();
+            builder.Services.AddScoped<IEditar<UsuarioAltaDto>, EditarUsuario>();
 
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();

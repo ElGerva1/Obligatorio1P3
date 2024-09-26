@@ -1,5 +1,6 @@
 ﻿using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesRepositorios;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace ComiteAccesoADatos.EF
 {
@@ -52,6 +53,20 @@ namespace ComiteAccesoADatos.EF
                 throw new Exception($"No se encontro la el usuario con email {email}");
             }
             return unUsuario;
+        }
+
+        public void Delete(Usuario obj)
+        {
+            Usuario u = GetByEmail(obj.Email.Value);
+            _context.usuarios.Remove(u);
+            _context.SaveChanges();
+        }
+
+        public void Edit(Usuario obj)
+        {
+            Usuario u = GetByEmail(obj.Email.Value);
+            _context.usuarios.Update(u);
+            _context.SaveChanges();
         }
     }
 }

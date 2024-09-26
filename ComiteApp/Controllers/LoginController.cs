@@ -32,20 +32,19 @@ namespace ComiteApp.Controllers
             UsuarioAltaDto usuario = null;
             try
             {
-                
                 usuario = _obtenerUno.Ejecutar(email);
             }
             catch (Exception e)
             {
-                return RedirectToAction("Login", e.Message);
+                return RedirectToAction("Login", new { message= e.Message});
             }           
-          
+
             HttpContext.Session.SetString("mail", usuario.Email);
 
             if (usuario.isAdmin == true)
             {
                 HttpContext.Session.SetString("rol", "admin");
-                return Redirect("/admin/index");
+                return Redirect("/digitador/index");
                 
             }
             else

@@ -8,7 +8,7 @@
 <h1>Bienvenido Usuario Administrador</h1>
 
 <p>
-    <a asp-action="Create">Agregar un Digitador</a>
+    <a asp-controller="Digitador" asp-action="Create">Agregar un Digitador</a>
 </p>
 
 <table class="table">
@@ -28,9 +28,9 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.Id  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
             </td>
         </tr>
 }
