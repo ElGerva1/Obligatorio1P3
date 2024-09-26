@@ -30,11 +30,6 @@ namespace ComiteApp.Controllers
         {
             // ir con el caso de uso 
             UsuarioAltaDto usuario = null;
-            if (email == "admin@admin.com")
-            {
-                HttpContext.Session.SetString("rol", "admin");
-                return Redirect("/admin/index");
-            }
             try
             {
                 
@@ -45,7 +40,6 @@ namespace ComiteApp.Controllers
                 return RedirectToAction("Login", e.Message);
             }           
           
-            //HttpContext.Session.SetString("esAdmin", usuario.Admin);
             HttpContext.Session.SetString("mail", usuario.Email);
 
             if (usuario.isAdmin == true)
@@ -57,7 +51,7 @@ namespace ComiteApp.Controllers
             else
             {
                 HttpContext.Session.SetString("rol", "digitador");
-                return Redirect("/usuario/index");
+                return Redirect("/digitador/index");
             }
         }
 
