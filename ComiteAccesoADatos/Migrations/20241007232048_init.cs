@@ -18,7 +18,7 @@ namespace ComiteAccesoADatos.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     fecRegistro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -31,12 +31,6 @@ namespace ComiteAccesoADatos.Migrations
                 name: "IX_usuarios_Email",
                 table: "usuarios",
                 column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_usuarios_Password",
-                table: "usuarios",
-                column: "Password",
                 unique: true);
         }
 

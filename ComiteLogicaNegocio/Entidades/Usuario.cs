@@ -18,7 +18,7 @@ namespace ComiteLogicaNegocio.Entidades
                Email email,
                Password password)
         {
-
+            ID = id;
             Email = email;
             Password = password;
             fecRegistro = DateTime.Now;

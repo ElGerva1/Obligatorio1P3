@@ -4,12 +4,13 @@
     ViewData["Title"] = "Crear un usuario Digitador";
 }
 
-<h1>Agregar un digitador</h1>
+<h1>Agregar un usuario digitador</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
+            <input type="hidden" name="Discriminator" value="Digitador" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>

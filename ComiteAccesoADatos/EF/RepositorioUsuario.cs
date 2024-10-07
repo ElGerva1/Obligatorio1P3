@@ -64,7 +64,9 @@ namespace ComiteAccesoADatos.EF
 
         public void Edit(Usuario obj)
         {
-            Usuario u = GetByEmail(obj.Email.Value);
+            Usuario u = GetById(obj.ID);
+            u.Email = obj.Email;
+            u.Password = obj.Password;
             _context.usuarios.Update(u);
             _context.SaveChanges();
         }

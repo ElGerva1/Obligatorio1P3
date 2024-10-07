@@ -35,7 +35,6 @@ namespace ComiteAccesoDatos.EF.Config
                 v => new Password(v)
              );
             builder.Property(a => a.Password).HasConversion(passwordConvert);
-            builder.HasIndex(a => a.Password).IsUnique();
         }
     }
 }

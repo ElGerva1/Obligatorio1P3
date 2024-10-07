@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComiteAccesoADatos.Migrations
 {
     [DbContext(typeof(ComiteContext))]
-    [Migration("20240924010451_init")]
+    [Migration("20241007232048_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -44,7 +44,7 @@ namespace ComiteAccesoADatos.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("fecRegistro")
                         .HasColumnType("datetime2");
@@ -52,9 +52,6 @@ namespace ComiteAccesoADatos.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("Password")
                         .IsUnique();
 
                     b.ToTable("usuarios");

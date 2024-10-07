@@ -41,10 +41,10 @@ namespace ComiteApp.Controllers
 
             HttpContext.Session.SetString("mail", usuario.Email);
 
-            if (usuario.isAdmin == true)
+            if (usuario.Discriminator == "Admin")
             {
                 HttpContext.Session.SetString("rol", "admin");
-                return Redirect("/digitador/index");
+                return Redirect("/usuario/index");
                 
             }
             else

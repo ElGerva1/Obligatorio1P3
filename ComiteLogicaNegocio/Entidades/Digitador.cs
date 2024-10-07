@@ -16,8 +16,7 @@ namespace ComiteLogicaNegocio.Entidades
 
         public Digitador(int id, string email, string password) : base(id, new Email(email), new Password(password))
         {
-            {
+
         }
     }
-}
 }
