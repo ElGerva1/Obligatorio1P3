@@ -1,5 +1,5 @@
-﻿using ComiteLogicaNegocio.Entidades;
-using Libreria.LogicaAccesoDatos.EF.Config;
+﻿using ComiteAccesoDatos.EF.Config;
+using ComiteLogicaNegocio.Entidades;
 using Microsoft.EntityFrameworkCore;
 
 namespace ComiteAccesoADatos.EF
@@ -7,6 +7,10 @@ namespace ComiteAccesoADatos.EF
     public class ComiteContext : DbContext
     {
         public DbSet<Usuario> usuarios { get; set; }
+
+        public DbSet<Admin> admins { get; set; }
+
+        public DbSet<Digitador> digitadores { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
