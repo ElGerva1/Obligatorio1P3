@@ -11,6 +11,8 @@ namespace ComiteAccesoADatos.EF
         public DbSet<Admin> admins { get; set; }
 
         public DbSet<Digitador> digitadores { get; set; }
+
+        public DbSet<Disciplina> disciplinas { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

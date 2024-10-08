@@ -8,5 +8,17 @@ namespace ComiteLogicaNegocio.Entidades
 {
     public class Disciplina
     {
+        public int ID { get; set; }
+        public string Nombre { get; set; }
+        public int Year { get; set; }
+
+        public Disciplina() { }
+
+        public Disciplina(int id, string nombre, int year)
+        {
+            ID = id;
+            Nombre = nombre;
+            Year = year;
+        }
     }
 }
