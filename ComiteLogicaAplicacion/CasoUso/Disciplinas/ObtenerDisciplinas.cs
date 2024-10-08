@@ -8,7 +8,7 @@ using ComiteLogicaNegocio.InterfacesRepositorios;
 
 namespace ComiteLogicaAplicacion.CasoUso.Disciplinas
 {
-    public class ObtenerDisciplinas : IObtenerTodos<DisciplinasAltaDto>
+    public class ObtenerDisciplinas : IObtenerTodos<DisciplinasListadoDto>
     {
         IRepositorioDisciplina _repositorio;
 
@@ -16,7 +16,7 @@ namespace ComiteLogicaAplicacion.CasoUso.Disciplinas
         {
             _repositorio = repositorio;
         }
-        public IEnumerable<DisciplinasAltaDto> Ejecutar()
+        public IEnumerable<DisciplinasListadoDto> Ejecutar()
         {
             return DisciplinaMapper.ToListaDto(_repositorio.GetAll());
         }

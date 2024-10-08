@@ -24,5 +24,9 @@ namespace ComiteLogicaNegocio.CasoUso.Disciplinas
         {
             return DisciplinaMapper.ToDto(_repositorio.GetById(id));
         }
+        public DisciplinasAltaDto Ejecutar(string nombre)
+        {
+            return DisciplinaMapper.ToDto(_repositorio.GetByName(nombre));
+        }
     }
 }

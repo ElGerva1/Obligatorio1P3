@@ -1,22 +1,39 @@
-﻿@using ComiteCompartido.Dtos.Usuarios
-@model IEnumerable<UsuarioListadoDto>
+﻿@using ComiteCompartido.Dtos.Disciplinas
+@model IEnumerable<DisciplinasListadoDto>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Bienvenido Usuario Digitador</h1>
+<h1>Lista de Disciplinas</h1>
 
 <p>
-
-    RF2 - Gestión de Atletas (usuarios con rol “Digitador”) (MVC)
-    • Los atletas competidores se cargarán manualmente en la base de datos, y por el momento no tendrán
-    un usuario asignado.
-    • Los usuarios con rol “Digitador” podrán asignar a los atletas una o más disciplinas en las que compiten
-    o Seleccionará el atleta de un listado ordenado por nombre del país y luego por apellido y
-    nombre del atleta en forma alfabética, de la A a la Z.
-    o Se mostrarán todos los datos del atleta (incluyendo las disciplinas en las que está actualmente
-    registrado) y se seleccionará el/las nuevas disciplinas en las que participa.
-    o Deberá controlar que no se puedan agregar disciplinas en las que el atleta ya participe.
-    • En esta etapa del desarrollo no se consideran equipos, solamente atletas individuales.
+    <a asp-action="Create">Agregar Nueva Disciplina</a>
 </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

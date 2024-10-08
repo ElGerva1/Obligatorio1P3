@@ -40,5 +40,18 @@ namespace ComiteAccesoADatos.EF
             }
             return d;
         }
+        public Disciplina GetByName(string nombre)
+        {
+            Disciplina? d = null;
+            d =
+                _context.disciplinas
+                .AsEnumerable()
+                .FirstOrDefault(d => d.Nombre == nombre);
+            if (d == null)
+            {
+                throw new Exception($"No se encontro la discipina con email {nombre}");
+            }
+            return d;
+        }
     }
 }

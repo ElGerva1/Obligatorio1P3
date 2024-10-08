@@ -20,14 +20,14 @@ namespace ComiteCompartido.Dtos.MappersDisciplina
                     item.Year
             );
         }
-        public static IEnumerable<DisciplinasAltaDto> ToListaDto(IEnumerable<Disciplina> items)
+        public static IEnumerable<DisciplinasListadoDto> ToListaDto(IEnumerable<Disciplina> items)
         {            
 
-            List<DisciplinasAltaDto> dtos = new List<DisciplinasAltaDto>();
+            List<DisciplinasListadoDto> dtos = new List<DisciplinasListadoDto>();
 
             foreach (Disciplina item in items)
             {
-                dtos.Add(new DisciplinasAltaDto(
+                dtos.Add(new DisciplinasListadoDto(
                     item.ID,
                     item.Nombre,
                     item.Year

@@ -5,6 +5,8 @@ using ComiteLogicaNegocio.InterfacesRepositorios;
 using ComiteAccesoADatos.EF;
 using ComiteLogicaAplicacion.CasoUso.Usuarios;
 using ComiteCompartido.Dtos.Usuarios;
+using ComiteCompartido.Dtos.Disciplinas;
+using ComiteLogicaAplicacion.CasoUso.Disciplinas;
 
 namespace ComiteApp
 {
@@ -19,6 +21,7 @@ namespace ComiteApp
 
             // inyecto los repositorios
             builder.Services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
+            builder.Services.AddScoped<IRepositorioDisciplina, RepositorioDisciplina>();
 
             // intetecto los caso de uso
             builder.Services.AddScoped<IAlta<UsuarioAltaDto>, AltaUsuario>();
@@ -26,6 +29,9 @@ namespace ComiteApp
             builder.Services.AddScoped<IObtener<UsuarioAltaDto>, ObtenerUsuario>();
             builder.Services.AddScoped<IEliminar<UsuarioAltaDto>, EliminarUsuario>();
             builder.Services.AddScoped<IEditar<UsuarioAltaDto>, EditarUsuario>();
+
+            builder.Services.AddScoped<IAlta<DisciplinasAltaDto>, AltaDisciplina>();
+            builder.Services.AddScoped<IObtenerTodos<DisciplinasListadoDto>, ObtenerDisciplinas>();
 
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();
