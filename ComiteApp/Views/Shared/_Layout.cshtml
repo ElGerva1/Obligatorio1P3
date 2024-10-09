@@ -32,13 +32,13 @@
                         @if (@Context.Session.GetString("rol") == "digitador")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Gestion Eventos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Digitador" asp-action="Eventos">Gestion Eventos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Gestion Atletas</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Digitador" asp-action="Atletas">Gestion Atletas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Digitador" asp-action="Index">Gestion Disciplinas</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Digitador" asp-action="Disciplinas">Gestion Disciplinas</a>
                             </li>
                         }
                         <li class="nav-item">

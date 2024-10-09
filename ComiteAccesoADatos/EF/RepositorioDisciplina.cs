@@ -23,6 +23,13 @@ namespace ComiteAccesoADatos.EF
             _context.SaveChanges();
         }
 
+        public void Delete(Disciplina obj)
+        {
+            Disciplina d = GetById(obj.ID);
+            _context.disciplinas.Remove(d);
+            _context.SaveChanges();
+        }
+
         public IEnumerable<Disciplina> GetAll()
         {
             return _context.disciplinas;

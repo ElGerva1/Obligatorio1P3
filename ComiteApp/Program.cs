@@ -7,6 +7,7 @@ using ComiteLogicaAplicacion.CasoUso.Usuarios;
 using ComiteCompartido.Dtos.Usuarios;
 using ComiteCompartido.Dtos.Disciplinas;
 using ComiteLogicaAplicacion.CasoUso.Disciplinas;
+using ComiteLogicaNegocio.CasoUso.Disciplinas;
 
 namespace ComiteApp
 {
@@ -32,6 +33,8 @@ namespace ComiteApp
 
             builder.Services.AddScoped<IAlta<DisciplinasAltaDto>, AltaDisciplina>();
             builder.Services.AddScoped<IObtenerTodos<DisciplinasListadoDto>, ObtenerDisciplinas>();
+            builder.Services.AddScoped<IObtener<DisciplinasAltaDto>, ObtenerDisciplina>();
+            builder.Services.AddScoped<IEliminar<DisciplinasAltaDto>, EliminarDisciplina>();
 
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();

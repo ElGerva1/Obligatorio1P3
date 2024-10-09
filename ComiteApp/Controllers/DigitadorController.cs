@@ -16,12 +16,18 @@ namespace ComiteApp.Controllers
     {
         IObtenerTodos<DisciplinasListadoDto> _obtenerTodas;
         IAlta<DisciplinasAltaDto> _alta;
+        IObtener<DisciplinasAltaDto> _obtenerID;
+        IEliminar<DisciplinasAltaDto> _eliminar;
         public DigitadorController(
             IObtenerTodos<DisciplinasListadoDto> obtenerTodas,
-            IAlta<DisciplinasAltaDto> alta)
+            IAlta<DisciplinasAltaDto> alta,
+            IObtener<DisciplinasAltaDto> obtenerID,
+            IEliminar<DisciplinasAltaDto> eliminar)
         { 
         _obtenerTodas = obtenerTodas;
             _alta = alta;
+            _obtenerID = obtenerID;
+            _eliminar = eliminar;
         }
 
         [HttpGet]
@@ -29,19 +35,28 @@ namespace ComiteApp.Controllers
         {
             return View(_obtenerTodas.Ejecutar());
         }
-
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Disciplinas()
         {
-            return View();
+            return View(_obtenerTodas.Ejecutar());
+        }
+        [HttpGet]
+        public IActionResult Eventos()
+        {
+            return View(_obtenerTodas.Ejecutar());
+        }
+        [HttpGet]
+        public IActionResult Atletas()
+        {
+            return View(_obtenerTodas.Ejecutar());
         }
         [HttpPost]
-        public IActionResult Create(DisciplinasAltaDto disciplina)
+        public IActionResult CrearDisciplina(DisciplinasAltaDto disciplina)
         {
             try
             {
                 _alta.Ejecutar(disciplina);
-                return RedirectToAction("Index");
+                return RedirectToAction("Disciplinas");
             }
             catch (Exception e)
             {
@@ -49,6 +64,35 @@ namespace ComiteApp.Controllers
             }
             return View(disciplina);
 
+        }
+        // GET: Digitador/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Usuario = _obtenerID.Ejecutar(id);
+            if (Usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(Usuario);
+        }
+
+        // POST: Usuarios/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var Usuario = _obtenerID.Ejecutar(id);
+            if (Usuario != null)
+            {
+                _eliminar.Ejecutar(Usuario);
+            }
+            return RedirectToAction("Disciplinas");
         }
     }
 
