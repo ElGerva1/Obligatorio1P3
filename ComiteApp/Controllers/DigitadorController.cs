@@ -45,11 +45,6 @@ namespace ComiteApp.Controllers
         {
             return View(_obtenerTodas.Ejecutar());
         }
-        [HttpGet]
-        public IActionResult Atletas()
-        {
-            return View(_obtenerTodas.Ejecutar());
-        }
         [HttpPost]
         public IActionResult CrearDisciplina(DisciplinasAltaDto disciplina)
         {
