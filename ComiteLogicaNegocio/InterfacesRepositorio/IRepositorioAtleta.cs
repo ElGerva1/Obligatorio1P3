@@ -10,5 +10,6 @@ namespace ComiteLogicaNegocio.InterfacesRepositorio
 {
     public interface IRepositorioAtleta : IRepositorio<Atleta>
     {
+        void Edit(Atleta obj);
     }
 }

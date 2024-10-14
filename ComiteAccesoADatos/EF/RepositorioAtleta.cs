@@ -36,13 +36,22 @@ namespace ComiteAccesoADatos.EF
         {
             Atleta? a = null;
             a =
-                _context.atletas.Include(a=> a.Pais)
+                _context.atletas.Include(a=> a.Pais).Include(a => a.Disciplinas)
                 .FirstOrDefault(atleta => atleta.ID == id);
             if (a == null)
             {
                 throw new Exception($"No se encontro la el atleta con id {id}");
             }
             return a;
+        }
+        public void Edit(Atleta obj)
+        {
+            Atleta a = GetById(obj.ID);
+            a.Nombre = obj.Nombre;
+            a.Sexo = obj.Sexo;
+            a.Disciplinas = obj.Disciplinas;
+            _context.atletas.Update(a);
+            _context.SaveChanges();
         }
     }
 }

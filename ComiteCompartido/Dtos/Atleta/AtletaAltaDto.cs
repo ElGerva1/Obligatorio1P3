@@ -11,7 +11,9 @@ namespace ComiteCompartido.Dtos.Atletas
         int id,
         string Nombre,
         string Sexo,
-        int paisId
+        int paisId,
+        List<Disciplina> Disciplinas,
+        List<int> SelectedDisciplinaIds // Updated to hold multiple selected IDs
         )
     {
     }

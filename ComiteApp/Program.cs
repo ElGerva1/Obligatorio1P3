@@ -1,4 +1,5 @@
 using ComiteLogicaNegocio.CasoUso.Usuarios;
+
 using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesCasoUso;
 using ComiteLogicaNegocio.InterfacesRepositorios;
@@ -42,7 +43,8 @@ namespace ComiteApp
             builder.Services.AddScoped<IEliminar<DisciplinasAltaDto>, EliminarDisciplina>();
 
             builder.Services.AddScoped<IObtenerTodos<AtletaListadoDto>, ObtenerAtletas>();
-
+            builder.Services.AddScoped<IObtener<AtletaAltaDto>, ObtenerAtleta>();
+            builder.Services.AddScoped<IEditar<AtletaAltaDto>, EditarAtleta>();
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();
 

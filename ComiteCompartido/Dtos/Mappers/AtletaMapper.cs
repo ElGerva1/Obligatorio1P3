@@ -18,7 +18,8 @@ namespace ComiteCompartido.Dtos.Mappers
             return new Atleta(item.id,
                 item.Nombre,
                 item.Sexo,
-                item.paisId);
+                item.paisId,
+                item.Disciplinas);
         }
 
         public static AtletaAltaDto ToDto(Atleta? item)
@@ -27,7 +28,9 @@ namespace ComiteCompartido.Dtos.Mappers
                 item.ID,
                 item.Nombre,
                 item.Sexo,
-                item.PaisId
+                item.PaisId,
+                item.Disciplinas,
+                item.Disciplinas.Select(d => d.ID).ToList()
             );
         }
 
@@ -43,7 +46,8 @@ namespace ComiteCompartido.Dtos.Mappers
                         item.Nombre,
                         item.Sexo,
                         item.PaisId,
-                        item.Pais.NombrePais
+                        item.Pais.NombrePais,
+                        item.Disciplinas?.Select(d => d.Nombre).ToList() ?? new List<string>() // Default to an empty list if null
                     ));
             }
 

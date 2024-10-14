@@ -11,7 +11,8 @@ namespace ComiteCompartido.Dtos.Atletas
         string Nombre,
         string Sexo,
         int paisId, 
-        string NombrePais)
+        string NombrePais,
+        List<String> Disciplinas)
     {
     }
 }

@@ -24,12 +24,13 @@ namespace ComiteLogicaNegocio.Entidades
         
         public Atleta() { }
 
-        public Atleta(int iD, string nombre, string sexo, int paisId)
+        public Atleta(int iD, string nombre, string sexo, int paisId, List<Disciplina> disciplinas)
         {
             ID = iD;
             Nombre = nombre;
             Sexo = sexo;
             PaisId = paisId;
+            Disciplinas = disciplinas;
         }
     }
 }
