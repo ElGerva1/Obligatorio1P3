@@ -1,5 +1,6 @@
 ﻿using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesRepositorios;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace ComiteAccesoADatos.EF
 {
@@ -29,7 +30,45 @@ namespace ComiteAccesoADatos.EF
 
         public Usuario GetById(int id)
         {
-            throw new NotImplementedException();
+            Usuario? unUsuario = null;
+            unUsuario =
+                _context.usuarios
+                .FirstOrDefault(usuario => usuario.ID == id);
+            if (unUsuario == null)
+            {
+                throw new Exception($"No se encontro la el usuario con id {id}");
+            }
+            return unUsuario;
+        }
+
+        public Usuario GetByEmail(string email)
+        {
+            Usuario? unUsuario = null;
+            unUsuario =
+                _context.usuarios
+                .AsEnumerable()
+                .FirstOrDefault(usuario => usuario.Email.Value == email);
+            if (unUsuario == null)
+            {
+                throw new Exception($"No se encontro la el usuario con email {email}");
+            }
+            return unUsuario;
+        }
+
+        public void Delete(Usuario obj)
+        {
+            Usuario u = GetByEmail(obj.Email.Value);
+            _context.usuarios.Remove(u);
+            _context.SaveChanges();
+        }
+
+        public void Edit(Usuario obj)
+        {
+            Usuario u = GetById(obj.ID);
+            u.Email = obj.Email;
+            u.Password = obj.Password;
+            _context.usuarios.Update(u);
+            _context.SaveChanges();
         }
     }
 }

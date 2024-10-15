@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComiteLogicaNegocio.CasoUso.Usuarios
+namespace ComiteLogicaAplicacion.CasoUso.Atleta
 {
-    public class ObtenerUsuario
+    public class AgregarDisciplinaAtleta
     {
     }
 }

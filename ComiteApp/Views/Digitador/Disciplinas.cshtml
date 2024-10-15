@@ -1,0 +1,54 @@
+﻿@using ComiteCompartido.Dtos.Disciplinas
+@model IEnumerable<DisciplinasListadoDto>
+
+@{
+    ViewData["Title"] = "Disciplinas";
+}
+
+<h3>Lista de Disciplinas Olimpicas</h3>
+
+<form asp-action="CrearDisciplina" method="post">
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required />
+        <label for="year">Año:</label>
+        <input type="text" id="year" name="year" required />
+        <button type="submit" class="btn btn-success">
+            <i class="bi bi-plus"></i> Agregar Nueva Disciplina
+        </button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                Año
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -5,23 +5,23 @@
 namespace ComiteAccesoADatos.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class disciplinas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "usuarios",
+                name: "disciplinas",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_usuarios", x => x.ID);
+                    table.PrimaryKey("PK_disciplinas", x => x.ID);
                 });
         }
 
@@ -29,7 +29,7 @@ namespace ComiteAccesoADatos.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "usuarios");
+                name: "disciplinas");
         }
     }
 }
