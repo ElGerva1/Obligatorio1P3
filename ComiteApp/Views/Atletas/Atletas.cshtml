@@ -34,7 +34,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.NombrePais)
                 </td>
-                <td>@Html.DisplayFor(modelItem => item.Disciplinas)</td>
+                <td>
+                    <ul>
+                        @foreach (var disciplina in item.Disciplinas)
+                        {
+                            <li>@disciplina</li> <!-- Assuming 'Nombre' is a property of Disciplina -->
+                        }
+                    </ul>
+                </td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
                 </td>

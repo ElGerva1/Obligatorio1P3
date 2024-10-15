@@ -58,7 +58,7 @@ namespace ComiteApp.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AtletaAltaDto atleta, List<int> AvailableDisciplinaIds, List<int> SelectedDisciplinaIds, string action)
+        public async Task<IActionResult> Edit(int id, AtletaAltaDto atleta, List<int> DisciplinasDisponiblesIds, List<int> SelectedDisciplinaIds, string action)
         {
             if (id != atleta.id)
             {
@@ -69,13 +69,13 @@ namespace ComiteApp.Controllers
                 if (action == "add")
                 {
                     // Get selected disciplines from available list
-                    var selectedIds = AvailableDisciplinaIds.Where(id => !SelectedDisciplinaIds.Contains(id)).ToList();
+                    var selectedIds = DisciplinasDisponiblesIds.Where(id => !SelectedDisciplinaIds.Contains(id)).ToList();
                     atleta.DisciplinasIds.AddRange(selectedIds);
                 }
                 else if (action == "remove")
                 {
                     // Remove selected disciplines
-                    var idsToRemove = SelectedDisciplinaIds.Where(id => AvailableDisciplinaIds.Contains(id)).ToList();
+                    var idsToRemove = SelectedDisciplinaIds.Where(id => DisciplinasDisponiblesIds.Contains(id)).ToList();
                     foreach (var i in idsToRemove)
                     {
                         atleta.DisciplinasIds.Remove(i);

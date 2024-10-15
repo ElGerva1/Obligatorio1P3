@@ -33,7 +33,6 @@ namespace ComiteLogicaNegocio.Entidades
             Sexo = sexo;
             PaisId = paisId;
             DisciplinasIds = disciplinasIds;
-            Disciplinas = new List<Disciplina>();
         }
     }
 }

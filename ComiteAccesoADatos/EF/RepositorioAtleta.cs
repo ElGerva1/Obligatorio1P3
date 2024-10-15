@@ -50,7 +50,9 @@ namespace ComiteAccesoADatos.EF
             a.Nombre = obj.Nombre;
             a.Sexo = obj.Sexo;
             a.Disciplinas = obj.Disciplinas;
-            a.DisciplinasIds = obj.DisciplinasIds;
+            foreach(int i in obj.DisciplinasIds){
+                a.DisciplinasIds.Add(i);
+            }
             _context.atletas.Update(a);
             _context.SaveChanges();
         }

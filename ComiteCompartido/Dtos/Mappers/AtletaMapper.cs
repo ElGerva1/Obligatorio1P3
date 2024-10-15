@@ -29,7 +29,6 @@ namespace ComiteCompartido.Dtos.Mappers
                 item.Nombre,
                 item.Sexo,
                 item.PaisId,
-                item.Disciplinas,
                 item.Disciplinas?.Select(d => d.ID).ToList() ?? new List<int>()
             );
         }

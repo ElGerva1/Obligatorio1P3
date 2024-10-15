@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComiteLogicaAplicacion.CasoUso.Atleta
+namespace ComiteLogicaAplicacion.CasoUso.CasoUsoAtleta
 {
     public class ObtenerAtletas : IObtenerTodos<AtletaListadoDto>
     {

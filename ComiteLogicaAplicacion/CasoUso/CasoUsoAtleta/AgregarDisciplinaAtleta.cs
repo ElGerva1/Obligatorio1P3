@@ -4,6 +4,7 @@ using ComiteLogicaNegocio.InterfacesRepositorios;
 using ComiteLogicaNegocio.Entidades;
 using ComiteCompartido.Dtos.Atletas;
 using ComiteCompartido.Dtos.Mappers;
+using Microsoft.EntityFrameworkCore;
 
 namespace ComiteLogicaAplicacion.CasoUso.AtletaAgregarDisciplina
 {
@@ -18,9 +19,16 @@ namespace ComiteLogicaAplicacion.CasoUso.AtletaAgregarDisciplina
             _disiplinas = disciplinas;
         }
 
-        public void Ejecutar(AtletaAltaDto obj, int DisciplinaId)
+        public void Ejecutar(AtletaAltaDto atleta, int disciplinaId)
         {
-            obj.DisciplinasIds.Add(DisciplinaId);
+            atleta.DisciplinasIds.Add(disciplinaId);
+            Atleta a = _repositorio.GetById(atleta.id);
+            var disciplina = _disiplinas.GetById(disciplinaId);
+            if (disciplina != null && !a.Disciplinas.Contains(disciplina))
+            {
+                a.Disciplinas.Add(disciplina);
+            }
         }
+
     }
 }
