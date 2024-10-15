@@ -51,6 +51,11 @@ namespace ComiteAccesoADatos.EF
             a.Sexo = obj.Sexo;
             a.Disciplinas = obj.Disciplinas;
             foreach(int i in obj.DisciplinasIds){
+                Disciplina? d = null;
+                d =
+                    _context.disciplinas
+                    .FirstOrDefault(disciplina => disciplina.ID == i);
+                a.Disciplinas.Add(d);
                 a.DisciplinasIds.Add(i);
             }
             _context.atletas.Update(a);

@@ -29,7 +29,7 @@ namespace ComiteCompartido.Dtos.Mappers
                 item.Nombre,
                 item.Sexo,
                 item.PaisId,
-                item.Disciplinas?.Select(d => d.ID).ToList() ?? new List<int>()
+                item.DisciplinasIds
             );
         }
 
@@ -46,7 +46,7 @@ namespace ComiteCompartido.Dtos.Mappers
                         item.Sexo,
                         item.PaisId,
                         item.Pais.NombrePais,
-                        item.Disciplinas?.Select(d => d.Nombre).ToList() ?? new List<string>(), // Default to an empty list if null
+                        item.Disciplinas.ToList(),
                         item.DisciplinasIds
                     ));
             }

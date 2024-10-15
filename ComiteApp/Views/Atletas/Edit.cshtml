@@ -53,14 +53,12 @@
             </div>
             <div class="form-group">
                 <label for="SelectedDisciplinaIds" class="control-label">Disciplinas del Atleta</label>
-                <select name="SelectedDisciplinaIds" class="form-control">
-                    @foreach (var selectedId in Model.DisciplinasIds)
+                <select name="SelectedDisciplinaIds" class="form-control" multiple>
+                    @foreach (var disciplina in ViewBag.DisciplinasAtleta)
                     {
-                        var disciplinas = (IEnumerable<Disciplina>)ViewBag.Disciplinas; // Asegúrate de que ViewBag.Disciplinas sea del tipo correcto
-                        var disciplina = disciplinas.FirstOrDefault(d => d.ID == selectedId);
                         if (disciplina != null)
                         {
-                            <option value="@disciplina.ID">
+                            <option value="@disciplina.Id">
                                 @disciplina.Nombre
                             </option>
                         }

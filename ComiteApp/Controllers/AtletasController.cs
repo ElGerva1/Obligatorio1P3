@@ -47,10 +47,16 @@ namespace ComiteApp.Controllers
             {
                 return NotFound();
             }
-            
-            var disciplinas = _obtenerTodasDisciplinas.Ejecutar().ToList();
+
+            List<DisciplinasListadoDto> disciplinas = _obtenerTodasDisciplinas.Ejecutar().ToList();
+            List<DisciplinasListadoDto> discilinasAtleta = new List<DisciplinasListadoDto>();
+            foreach (int i in Atleta.DisciplinasIds) {
+                DisciplinasListadoDto? disciplina = disciplinas.FirstOrDefault(d => d.Id == i);
+                discilinasAtleta.Add(disciplina);
+            }
             
             ViewBag.Disciplinas = disciplinas;
+            ViewBag.DisciplinasAtleta = discilinasAtleta;
             return View(Atleta);
         }
 
