@@ -15,6 +15,11 @@ namespace ComiteAccesoADatos.Migrations
                 new[] { "ID", "Email", "Password", "Discriminator", "fecRegistro" },
                 new object[] { 1, "admin@admin.com", "Admin.123", "Admin", DateTime.Now }
             );
+            migrationBuilder.InsertData(
+                "usuarios",
+                new[] { "ID", "Email", "Password", "Discriminator", "fecRegistro" },
+                new object[] { 2, "digitador@digitador.com", "Digitador.123", "Digitador", DateTime.Now }
+            );
 
         }
 
