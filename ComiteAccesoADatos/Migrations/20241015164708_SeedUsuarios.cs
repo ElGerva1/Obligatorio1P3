@@ -5,7 +5,7 @@
 namespace ComiteAccesoADatos.Migrations
 {
     /// <inheritdoc />
-    public partial class SeedData : Migration
+    public partial class SeedUsuarios : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,6 +22,7 @@ namespace ComiteAccesoADatos.Migrations
             );
 
         }
+
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)

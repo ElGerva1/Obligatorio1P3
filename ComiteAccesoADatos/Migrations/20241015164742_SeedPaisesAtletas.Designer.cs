@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComiteAccesoADatos.Migrations
 {
     [DbContext(typeof(ComiteContext))]
-    [Migration("20241010005413_SeedAtletasPaises")]
-    partial class SeedAtletasPaises
+    [Migration("20241015164742_SeedPaisesAtletas")]
+    partial class SeedPaisesAtletas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,21 +25,6 @@ namespace ComiteAccesoADatos.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AtletaDisciplina", b =>
-                {
-                    b.Property<int>("AtletasID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DisciplinasID")
-                        .HasColumnType("int");
-
-                    b.HasKey("AtletasID", "DisciplinasID");
-
-                    b.HasIndex("DisciplinasID");
-
-                    b.ToTable("AtletaDisciplina");
-                });
-
             modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
                 {
                     b.Property<int>("ID")
@@ -47,6 +32,10 @@ namespace ComiteAccesoADatos.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("DisciplinasIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -74,6 +63,9 @@ namespace ComiteAccesoADatos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int?>("AtletaID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -82,6 +74,8 @@ namespace ComiteAccesoADatos.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AtletaID");
 
                     b.ToTable("disciplinas");
                 });
@@ -164,21 +158,6 @@ namespace ComiteAccesoADatos.Migrations
                     b.HasDiscriminator().HasValue("Digitador");
                 });
 
-            modelBuilder.Entity("AtletaDisciplina", b =>
-                {
-                    b.HasOne("ComiteLogicaNegocio.Entidades.Atleta", null)
-                        .WithMany()
-                        .HasForeignKey("AtletasID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ComiteLogicaNegocio.Entidades.Disciplina", null)
-                        .WithMany()
-                        .HasForeignKey("DisciplinasID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
                 {
                     b.HasOne("ComiteLogicaNegocio.Entidades.Pais", "Pais")
@@ -188,6 +167,18 @@ namespace ComiteAccesoADatos.Migrations
                         .IsRequired();
 
                     b.Navigation("Pais");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Disciplina", b =>
+                {
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Atleta", null)
+                        .WithMany("Disciplinas")
+                        .HasForeignKey("AtletaID");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
+                {
+                    b.Navigation("Disciplinas");
                 });
 #pragma warning restore 612, 618
         }

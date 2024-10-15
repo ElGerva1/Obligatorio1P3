@@ -1,8 +1,10 @@
 ﻿using ComiteCompartido.Dtos.Atletas;
 using ComiteCompartido.Dtos.Disciplinas;
+using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesCasoUso;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ComiteApp.Controllers
 {
@@ -45,7 +47,10 @@ namespace ComiteApp.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Disciplinas = _obtenerTodasDisciplinas.Ejecutar().ToList();
+            
+            var disciplinas = _obtenerTodasDisciplinas.Ejecutar().ToList();
+            
+            ViewBag.Disciplinas = disciplinas;
             return View(Atleta);
         }
 
@@ -53,15 +58,30 @@ namespace ComiteApp.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AtletaAltaDto Atleta)
+        public async Task<IActionResult> Edit(int id, AtletaAltaDto atleta, List<int> AvailableDisciplinaIds, List<int> SelectedDisciplinaIds, string action)
         {
-            if (id != Atleta.id)
+            if (id != atleta.id)
             {
                 return NotFound();
             }
             try
             {
-                _editar.Ejecutar(Atleta);
+                if (action == "add")
+                {
+                    // Get selected disciplines from available list
+                    var selectedIds = AvailableDisciplinaIds.Where(id => !SelectedDisciplinaIds.Contains(id)).ToList();
+                    atleta.DisciplinasIds.AddRange(selectedIds);
+                }
+                else if (action == "remove")
+                {
+                    // Remove selected disciplines
+                    var idsToRemove = SelectedDisciplinaIds.Where(id => AvailableDisciplinaIds.Contains(id)).ToList();
+                    foreach (var i in idsToRemove)
+                    {
+                        atleta.DisciplinasIds.Remove(i);
+                    }
+                }
+                _editar.Ejecutar(atleta);
             }
             catch (DbUpdateConcurrencyException)
             {

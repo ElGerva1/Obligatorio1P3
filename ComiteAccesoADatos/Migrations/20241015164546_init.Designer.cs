@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComiteAccesoADatos.Migrations
 {
     [DbContext(typeof(ComiteContext))]
-    [Migration("20241008005855_disciplinas")]
-    partial class disciplinas
+    [Migration("20241015164546_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,36 @@ namespace ComiteAccesoADatos.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("DisciplinasIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaisId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PaisId");
+
+                    b.ToTable("atletas");
+                });
+
             modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Disciplina", b =>
                 {
                     b.Property<int>("ID")
@@ -32,6 +62,9 @@ namespace ComiteAccesoADatos.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("AtletaID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -42,7 +75,37 @@ namespace ComiteAccesoADatos.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("AtletaID");
+
                     b.ToTable("disciplinas");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Pais", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CantidadHabitantes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreContacto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombrePais")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelefonoContacto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("paises");
                 });
 
             modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Usuario", b =>
@@ -93,6 +156,29 @@ namespace ComiteAccesoADatos.Migrations
                     b.HasBaseType("ComiteLogicaNegocio.Entidades.Usuario");
 
                     b.HasDiscriminator().HasValue("Digitador");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
+                {
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Pais", "Pais")
+                        .WithMany()
+                        .HasForeignKey("PaisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pais");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Disciplina", b =>
+                {
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Atleta", null)
+                        .WithMany("Disciplinas")
+                        .HasForeignKey("AtletaID");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
+                {
+                    b.Navigation("Disciplinas");
                 });
 #pragma warning restore 612, 618
         }

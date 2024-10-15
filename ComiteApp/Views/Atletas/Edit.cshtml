@@ -1,4 +1,5 @@
 ﻿@model ComiteCompartido.Dtos.Atletas.AtletaAltaDto
+@using ComiteLogicaNegocio.Entidades;
 
 @{
     ViewData["Title"] = "Edit";
@@ -33,18 +34,38 @@
                 <span asp-validation-for="paisId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="SelectedDisciplinaIds" class="control-label">Disciplinas</label>
-                <select asp-for="SelectedDisciplinaIds" class="form-control" multiple>
+                <label for="AvailableDisciplines" class="control-label">Available Disciplines</label>
+                <select name="AvailableDisciplinaIds" class="form-control" multiple>
                     @foreach (var disciplina in ViewBag.Disciplinas)
                     {
-                        var selectedAttribute = Model.SelectedDisciplinaIds.Contains(disciplina.Id) ? "selected='selected'" : "";
-                        <option value="@disciplina.Id" selected=@Html.Raw(selectedAttribute)>
+                        <option value="@disciplina.Id">
                             @disciplina.Nombre
                         </option>
                     }
                 </select>
-                <span asp-validation-for="SelectedDisciplinaIds" class="text-danger"></span>
+                <div class="form-group">
+                    <button type="submit" name="action" value="add" class="btn btn-success">Add</button>
+                    <button type="submit" name="action" value="remove" class="btn btn-danger">Remove</button>
+                </div>
             </div>
+            <div class="form-group">
+                <label for="SelectedDisciplinaIds" class="control-label">Selected Disciplines</label>
+                <select name="SelectedDisciplinaIds" class="form-control" multiple>
+                    @foreach (var selectedId in Model.DisciplinasIds)
+                    {
+                        var disciplinas = (IEnumerable<Disciplina>)ViewBag.Disciplinas; // Asegúrate de que ViewBag.Disciplinas sea del tipo correcto
+                        var disciplina = disciplinas.FirstOrDefault(d => d.ID == selectedId);
+                        if (disciplina != null)
+                        {
+                            <option value="@disciplina.ID" selected="selected">
+                                @disciplina.Nombre
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+            <!-- Hidden field for DisciplinasIds -->
+            <input type="hidden" asp-for="DisciplinasIds" value="@Model.DisciplinasIds" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

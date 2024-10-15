@@ -21,16 +21,19 @@ namespace ComiteLogicaNegocio.Entidades
         public int PaisId { get; set; }
 
         public List<Disciplina> Disciplinas { get; set; }
-        
+        public List<int> DisciplinasIds { get; set; }
+
+
         public Atleta() { }
 
-        public Atleta(int iD, string nombre, string sexo, int paisId, List<Disciplina> disciplinas)
+        public Atleta(int iD, string nombre, string sexo, int paisId, List<int> disciplinasIds)
         {
             ID = iD;
             Nombre = nombre;
             Sexo = sexo;
             PaisId = paisId;
-            Disciplinas = disciplinas;
+            DisciplinasIds = disciplinasIds;
+            Disciplinas = new List<Disciplina>();
         }
     }
 }

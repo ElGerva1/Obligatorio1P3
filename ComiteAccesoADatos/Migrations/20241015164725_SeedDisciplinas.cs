@@ -8,6 +8,7 @@ namespace ComiteAccesoADatos.Migrations
     public partial class SeedDisciplinas : Migration
     {
         /// <inheritdoc />
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(
@@ -27,13 +28,13 @@ namespace ComiteAccesoADatos.Migrations
             );
             migrationBuilder.InsertData(
                 "disciplinas",
-               new[] { "ID", "Nombre", "Year" },
-               new object[] { 4, "Tenis", 94 }
+                new[] { "ID", "Nombre", "Year" },
+                new object[] { 4, "Tenis", 94 }
             );
             migrationBuilder.InsertData(
                 "disciplinas",
-               new[] { "ID", "Nombre", "Year" },
-               new object[] { 5, "Tenis de mesa", 94 }
+                new[] { "ID", "Nombre", "Year" },
+                new object[] { 5, "Tenis de mesa", 94 }
             );
             migrationBuilder.InsertData(
                 "disciplinas",

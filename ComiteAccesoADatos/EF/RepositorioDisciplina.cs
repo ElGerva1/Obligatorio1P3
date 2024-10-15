@@ -1,5 +1,6 @@
 ﻿using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesRepositorios;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace ComiteAccesoADatos.EF
@@ -32,7 +33,7 @@ namespace ComiteAccesoADatos.EF
 
         public IEnumerable<Disciplina> GetAll()
         {
-            return _context.disciplinas;
+            return _context.disciplinas.Include(d=>d.Atletas);
         }
 
         public Disciplina GetById(int id)

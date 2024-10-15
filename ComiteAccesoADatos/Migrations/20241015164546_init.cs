@@ -6,11 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ComiteAccesoADatos.Migrations
 {
     /// <inheritdoc />
-    public partial class AtletasPaises : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "disciplinas",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_disciplinas", x => x.ID);
+                });
 
             migrationBuilder.CreateTable(
                 name: "paises",
@@ -29,6 +42,22 @@ namespace ComiteAccesoADatos.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "usuarios",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    fecRegistro = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_usuarios", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "atletas",
                 columns: table => new
                 {
@@ -36,7 +65,8 @@ namespace ComiteAccesoADatos.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sexo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PaisId = table.Column<int>(type: "int", nullable: false)
+                    PaisId = table.Column<int>(type: "int", nullable: false),
+                    DisciplinasIds = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "[]")
                 },
                 constraints: table =>
                 {
@@ -82,6 +112,12 @@ namespace ComiteAccesoADatos.Migrations
                 name: "IX_atletas_PaisId",
                 table: "atletas",
                 column: "PaisId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_usuarios_Email",
+                table: "usuarios",
+                column: "Email",
+                unique: true);
         }
 
         /// <inheritdoc />

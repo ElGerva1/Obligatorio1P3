@@ -29,7 +29,7 @@ namespace ComiteAccesoADatos.EF
 
         public IEnumerable<Atleta> GetAll()
         {
-            return _context.atletas.Include(a => a.Pais).ToList();
+            return _context.atletas.Include(a => a.Pais).Include(a => a.Disciplinas).ToList();
         }
 
         public Atleta GetById(int id)
@@ -50,6 +50,7 @@ namespace ComiteAccesoADatos.EF
             a.Nombre = obj.Nombre;
             a.Sexo = obj.Sexo;
             a.Disciplinas = obj.Disciplinas;
+            a.DisciplinasIds = obj.DisciplinasIds;
             _context.atletas.Update(a);
             _context.SaveChanges();
         }

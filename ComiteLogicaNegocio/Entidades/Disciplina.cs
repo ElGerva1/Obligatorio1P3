@@ -12,7 +12,7 @@ namespace ComiteLogicaNegocio.Entidades
         public string Nombre { get; set; }
         public int Year { get; set; }
 
-        public List<Atleta> Atletas { get; set; }
+        public List<Atleta> Atletas { get; set; } = new List<Atleta>(); // Inicializar
 
         public Disciplina() { }
 
