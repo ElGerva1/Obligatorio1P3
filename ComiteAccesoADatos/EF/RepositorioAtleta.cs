@@ -49,7 +49,6 @@ namespace ComiteAccesoADatos.EF
             Atleta a = GetById(obj.ID);
             a.Nombre = obj.Nombre;
             a.Sexo = obj.Sexo;
-            a.Disciplinas = obj.Disciplinas;
             foreach(int i in obj.DisciplinasIds){
                 Disciplina? d = null;
                 d =

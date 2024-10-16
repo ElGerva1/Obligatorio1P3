@@ -46,7 +46,7 @@ namespace ComiteCompartido.Dtos.Mappers
                         item.Sexo,
                         item.PaisId,
                         item.Pais.NombrePais,
-                        item.Disciplinas.ToList(),
+                        item.Disciplinas.Select(d => d.Nombre).ToList(),
                         item.DisciplinasIds
                     ));
             }
