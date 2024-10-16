@@ -31,8 +31,9 @@ namespace ComiteApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string message)
         {
+            ViewBag.Message = message;
             try
             {
                 return View(_obtenerTodas.Ejecutar());
@@ -45,8 +46,9 @@ namespace ComiteApp.Controllers
             
         }
         [HttpGet]
-        public IActionResult Disciplinas()
+        public IActionResult Disciplinas(string message)
         {
+            ViewBag.Message = message;
             try
             {
                 return View(_obtenerTodas.Ejecutar());
@@ -84,8 +86,9 @@ namespace ComiteApp.Controllers
             catch (Exception e)
             {
                 ViewBag.Message = e.Message;
+                return RedirectToAction("Disciplinas", new { message = e.Message });
             }
-            return View(disciplina);
+            
 
         }
         // GET: Digitador/Delete/5
