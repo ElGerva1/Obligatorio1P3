@@ -18,6 +18,8 @@ namespace ComiteAccesoADatos.EF
 
         public DbSet<Atleta> atletas { get; set; }
 
+        public DbSet<Evento> eventos { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

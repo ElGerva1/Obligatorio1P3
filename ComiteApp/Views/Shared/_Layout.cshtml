@@ -22,7 +22,7 @@
                         @if (@Context.Session.GetString("rol") == "admin")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Gestion Eventos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Eventos" asp-action="Index">Gestion Eventos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Gestion Usuarios</a>
@@ -32,7 +32,7 @@
                         @if (@Context.Session.GetString("rol") == "digitador")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Digitador" asp-action="Eventos">Gestion Eventos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Eventos" asp-action="Index">Gestion Eventos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Atletas" asp-action="Atletas">Gestion Atletas</a>

@@ -60,21 +60,6 @@ namespace ComiteApp.Controllers
             }
             
         }
-        [HttpGet]
-        public IActionResult Eventos()
-        {
-            try
-            {
-                return View(_obtenerTodas.Ejecutar());
-            }
-            catch (Exception e)
-            {
-                ViewBag.Message = e.Message;
-                return View();
-            }
-
-            
-        }
         [HttpPost]
         public IActionResult CrearDisciplina(DisciplinasAltaDto disciplina)
         {
