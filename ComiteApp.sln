@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComiteApp", "ComiteApp\ComiteApp.csproj", "{57836D40-6049-452C-9940-A664E752208E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{07C336F2-894C-4388-80DA-57298CDF74EA} = {07C336F2-894C-4388-80DA-57298CDF74EA}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComiteLogicaNegocio", "ComiteLogicaNegocio\ComiteLogicaNegocio.csproj", "{0164E173-1DBC-429D-B555-7ADF6A52B66E}"
 EndProject
@@ -14,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComiteLogicaAplicacion", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComiteAccesoADatos", "ComiteAccesoADatos\ComiteAccesoADatos.csproj", "{07C336F2-894C-4388-80DA-57298CDF74EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComiteCompartido", "ComiteCompartido\ComiteCompartido.csproj", "{41A639A7-AA00-4737-AAB3-CEF4A9CFE999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComiteCompartido", "ComiteCompartido\ComiteCompartido.csproj", "{41A639A7-AA00-4737-AAB3-CEF4A9CFE999}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

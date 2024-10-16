@@ -38,7 +38,14 @@ namespace ComiteApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_obtenerTodos.Ejecutar());
+            try
+            {
+                return View(_obtenerTodos.Ejecutar());
+
+            } catch (Exception e) {
+                ViewBag.Message = e.Message;
+                return View();
+            }
         }
 
         [HttpGet]
@@ -70,13 +77,19 @@ namespace ComiteApp.Controllers
             {
                 return NotFound();
             }
-
-            var Usuario = _obtenerID.Ejecutar(id);
-            if (Usuario == null)
+            try
             {
-                return NotFound();
-            }
-            return View(Usuario);
+                var Usuario = _obtenerID.Ejecutar(id);
+                if (Usuario == null)
+                {
+                    return NotFound();
+                }
+                return View(Usuario);
+
+            } catch (Exception e) {
+                ViewBag.Message = e.Message;
+                return View();
+            } 
         }
 
         // POST: Usuarios/Edit/5
@@ -94,17 +107,10 @@ namespace ComiteApp.Controllers
                 {
                     _editar.Ejecutar(Usuario);
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(Usuario.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                catch (Exception e) {
+                    ViewBag.Message = e.Message;
+                    return View();
+                } 
                 return RedirectToAction("Index");
 
         }
@@ -116,14 +122,22 @@ namespace ComiteApp.Controllers
             {
                 return NotFound();
             }
-
-            var Usuario = _obtenerID.Ejecutar(id);
-            if (Usuario == null)
+            try
             {
-                return NotFound();
+                var Usuario = _obtenerID.Ejecutar(id);
+                if (Usuario == null)
+                {
+                    return NotFound();
+                }
+
+                return View(Usuario);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
             }
 
-            return View(Usuario);
         }
 
         // POST: Usuarios/Delete/5
@@ -131,18 +145,21 @@ namespace ComiteApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var Usuario = _obtenerID.Ejecutar(id);
-            if (Usuario != null)
+            try
             {
-                _eliminar.Ejecutar(Usuario);
+                var Usuario = _obtenerID.Ejecutar(id);
+                if (Usuario != null)
+                {
+                    _eliminar.Ejecutar(Usuario);
+                }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
-        }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
+            }
 
-        private bool UsuarioExists(int id)
-        {
-            var Usuario = _obtenerID.Ejecutar(id);
-            return Usuario != null;
         }
 
 

@@ -33,17 +33,45 @@ namespace ComiteApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_obtenerTodas.Ejecutar());
+            try
+            {
+                return View(_obtenerTodas.Ejecutar());
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
+            }
+            
         }
         [HttpGet]
         public IActionResult Disciplinas()
         {
-            return View(_obtenerTodas.Ejecutar());
+            try
+            {
+                return View(_obtenerTodas.Ejecutar());
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
+            }
+            
         }
         [HttpGet]
         public IActionResult Eventos()
         {
-            return View(_obtenerTodas.Ejecutar());
+            try
+            {
+                return View(_obtenerTodas.Ejecutar());
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
+            }
+
+            
         }
         [HttpPost]
         public IActionResult CrearDisciplina(DisciplinasAltaDto disciplina)
@@ -63,18 +91,26 @@ namespace ComiteApp.Controllers
         // GET: Digitador/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var Usuario = _obtenerID.Ejecutar(id);
-            if (Usuario == null)
+                var Usuario = _obtenerID.Ejecutar(id);
+                if (Usuario == null)
+                {
+                    return NotFound();
+                }
+
+                return View(Usuario);
+            }
+            catch (Exception e)
             {
-                return NotFound();
+                ViewBag.Message = e.Message;
+                return View();
             }
-
-            return View(Usuario);
         }
 
         // POST: Usuarios/Delete/5
@@ -82,12 +118,21 @@ namespace ComiteApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var Usuario = _obtenerID.Ejecutar(id);
-            if (Usuario != null)
+            try
             {
-                _eliminar.Ejecutar(Usuario);
+                var Usuario = _obtenerID.Ejecutar(id);
+                if (Usuario != null)
+                {
+                    _eliminar.Ejecutar(Usuario);
+                }
+                return RedirectToAction("Disciplinas");
             }
-            return RedirectToAction("Disciplinas");
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
+            }
+
         }
     }
 

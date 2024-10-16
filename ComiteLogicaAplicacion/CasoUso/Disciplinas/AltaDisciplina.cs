@@ -19,15 +19,7 @@ namespace ComiteLogicaAplicacion.CasoUso.Disciplinas
 
         public void Ejecutar(DisciplinasAltaDto obj)
         {
-            try
-            {
                 _repositorio.Add(DisciplinaMapper.FromDto(obj));
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al agregar el usuario");
-            }
-
         }
     }
 }
