@@ -10,16 +10,18 @@ namespace ComiteLogicaNegocio.Entidades
     {
         public int ID { get; set; }
         public Disciplina Disciplina { get; set; }
+
+        public int DisciplinaId { get; set; }
         public string Nombre { get; set; }
         public DateTime Inicio { get; set; }
         public DateTime Fin { get; set; }
 
         protected Evento() { }
 
-        public Evento(int iD, Disciplina disciplina, string nombre, DateTime inicio, DateTime fin)
+        public Evento(int iD, int disciplina, string nombre, DateTime inicio, DateTime fin)
         {
             ID = iD;
-            Disciplina = disciplina;
+            DisciplinaId = disciplina;
             Nombre = nombre;
             Inicio = inicio;
             Fin = fin;

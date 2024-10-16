@@ -8,15 +8,12 @@
 
 <p>
     <a asp-action="Create" class="btn btn-success">
-        <i class="bi bi-plus"></i> Agregar Nueva Disciplina
+        <i class="bi bi-plus"></i> Agregar Nuevo evento
     </a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.id)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -26,30 +23,35 @@
             <th>
                 @Html.DisplayNameFor(model => model.Fin)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDisciplina)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fin)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @if (Model != null) {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Inicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreDisciplina)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Agregar Puntajes", "Edit", new {  id=item.id })
+                    </td>
+                </tr>
+                    }
+       
+            }
     </tbody>
 </table>

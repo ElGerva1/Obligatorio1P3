@@ -95,7 +95,7 @@ namespace ComiteAccesoADatos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("DisciplinaID")
+                    b.Property<int>("DisciplinaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fin")
@@ -110,7 +110,7 @@ namespace ComiteAccesoADatos.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DisciplinaID");
+                    b.HasIndex("DisciplinaId");
 
                     b.ToTable("eventos");
                 });
@@ -223,7 +223,7 @@ namespace ComiteAccesoADatos.Migrations
                 {
                     b.HasOne("ComiteLogicaNegocio.Entidades.Disciplina", "Disciplina")
                         .WithMany()
-                        .HasForeignKey("DisciplinaID")
+                        .HasForeignKey("DisciplinaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

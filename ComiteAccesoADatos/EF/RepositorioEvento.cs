@@ -1,5 +1,6 @@
 ﻿using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesRepositorio;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,17 @@ namespace ComiteAccesoADatos.EF
 
         public void Add(Evento obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+            {
+                throw new ArgumentNullException("No se recibio evento vàlido");
+            }
+            _context.Add(obj);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Evento> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.eventos.Include(a => a.Disciplina).ToList();
         }
 
         public Evento GetById(int id)

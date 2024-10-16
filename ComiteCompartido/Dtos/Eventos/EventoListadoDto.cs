@@ -9,7 +9,7 @@ namespace ComiteCompartido.Dtos.Eventos
 {
     public record EventoListadoDto(
         int id,
-        Disciplina Disciplina,
+        string NombreDisciplina,
         string Nombre,
         DateTime Inicio,
         DateTime Fin

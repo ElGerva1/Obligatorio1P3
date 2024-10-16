@@ -11,11 +11,6 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="id" class="control-label"></label>
-                <input asp-for="id" class="form-control" />
-                <span asp-validation-for="id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
@@ -29,6 +24,28 @@
                 <label asp-for="Fin" class="control-label"></label>
                 <input asp-for="Fin" class="form-control" />
                 <span asp-validation-for="Fin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="DisciplinaId" class="control-label">Seleccione una Disciplina</label>
+                <select name="DisciplinaId" class="form-control">
+                    @foreach (var disciplina in ViewBag.Disciplinas)
+                    {
+                        <option value="@disciplina.Id">
+                            @disciplina.Nombre
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Atletas" class="control-label">Seleccione al menos 3 atletas</label>
+                <select name="AtletasIds" class="form-control" multiple>
+                    @foreach (var atleta in ViewBag.Atletas)
+                    {
+                        <option value="@atleta.id">
+                            @atleta.Nombre
+                        </option>
+                    }
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

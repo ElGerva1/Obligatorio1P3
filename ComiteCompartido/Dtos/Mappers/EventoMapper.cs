@@ -10,7 +10,7 @@ namespace ComiteCompartido.Dtos.Mappers
         public static Evento FromDto(EventoAltaDto evento) {
             return new Evento(
                 evento.id,
-                evento.Disciplina,
+                evento.DisciplinaId,
                 evento.Nombre,
                 evento.Inicio,
                 evento.Fin
@@ -20,7 +20,7 @@ namespace ComiteCompartido.Dtos.Mappers
         {
             return new EventoAltaDto(
                 evento.ID,
-                evento.Disciplina,
+                evento.Disciplina.ID,
                 evento.Nombre,
                 evento.Inicio,
                 evento.Fin
@@ -35,7 +35,7 @@ namespace ComiteCompartido.Dtos.Mappers
             {
                 dtos.Add(new EventoListadoDto(
                         item.ID,
-                        item.Disciplina,
+                        item.Disciplina.Nombre,
                         item.Nombre,
                         item.Inicio,
                         item.Fin
