@@ -23,7 +23,8 @@ namespace ComiteCompartido.Dtos.Mappers
                 evento.Disciplina.ID,
                 evento.Nombre,
                 evento.Inicio,
-                evento.Fin
+                evento.Fin,
+                evento.atletas.Select(a=>a.ID).ToList()
                 );
         }
         public static IEnumerable<EventoListadoDto> ToListaDto(IEnumerable<Evento> items)

@@ -28,23 +28,31 @@
             <div class="form-group">
                 <label for="DisciplinaId" class="control-label">Seleccione una Disciplina</label>
                 <select name="DisciplinaId" class="form-control">
-                    @foreach (var disciplina in ViewBag.Disciplinas)
+                    @if(ViewBag.Disciplinas != null)
                     {
-                        <option value="@disciplina.Id">
-                            @disciplina.Nombre
-                        </option>
+                        @foreach (var disciplina in ViewBag.Disciplinas)
+                        {
+                            <option value="@disciplina.Id">
+                                @disciplina.Nombre
+                            </option>
+                        }
                     }
+
                 </select>
             </div>
             <div class="form-group">
                 <label for="Atletas" class="control-label">Seleccione al menos 3 atletas</label>
                 <select name="AtletasIds" class="form-control" multiple>
-                    @foreach (var atleta in ViewBag.Atletas)
+                    @if (ViewBag.Atletas!=null)
                     {
-                        <option value="@atleta.id">
-                            @atleta.Nombre
-                        </option>
+                        @foreach (var atleta in ViewBag.Atletas)
+                        {
+                            <option value="@atleta.id">
+                                @atleta.Nombre
+                            </option>
+                        }
                     }
+
                 </select>
             </div>
             <div class="form-group">

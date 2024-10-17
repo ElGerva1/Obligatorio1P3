@@ -13,7 +13,7 @@ using ComiteLogicaNegocio.InterfacesRepositorio;
 using ComiteCompartido.Dtos.Atletas;
 using ComiteLogicaAplicacion.CasoUso.CasoUsoAtleta;
 using ComiteCompartido.Dtos.Eventos;
-using ComiteLogicaAplicacion.CasoUso.Evento;
+using ComiteLogicaAplicacion.CasoUso.CasoUsoEvento;
 namespace ComiteApp
 {
     public class Program

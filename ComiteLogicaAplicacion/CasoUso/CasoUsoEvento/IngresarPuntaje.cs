@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComiteLogicaAplicacion.CasoUso.Evento
+namespace ComiteLogicaAplicacion.CasoUso.CasoUsoEvento
 {
     internal class IngresarPuntaje
     {

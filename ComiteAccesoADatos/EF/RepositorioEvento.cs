@@ -23,9 +23,9 @@ namespace ComiteAccesoADatos.EF
             }
             if (EventoExist(obj.Nombre))
             {
-                throw new EventoException("La disciplina ya existe");
+                throw new EventoException("El evento ya existe");
             }
-            if (obj.Inicio < obj.Fin)
+            if (obj.Inicio > obj.Fin)
             {
                 throw new EventoException("El inicio no puede ser antes que el fin");
             }

@@ -29,8 +29,9 @@ namespace ComiteApp.Controllers
 
         
         [HttpGet]
-        public IActionResult Atletas()
+        public IActionResult Atletas(string message)
         {
+            ViewBag.Message = message;
             return View(_obtenerTodos.Ejecutar());
         }
 

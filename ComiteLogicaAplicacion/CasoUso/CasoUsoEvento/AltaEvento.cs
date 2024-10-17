@@ -2,6 +2,7 @@
 using ComiteCompartido.Dtos.Eventos;
 using ComiteCompartido.Dtos.Mappers;
 using ComiteCompartido.Dtos.MappersDisciplina;
+using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesCasoUso;
 using ComiteLogicaNegocio.InterfacesRepositorio;
 using ComiteLogicaNegocio.InterfacesRepositorios;
@@ -11,15 +12,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComiteLogicaAplicacion.CasoUso.Evento
+namespace ComiteLogicaAplicacion.CasoUso.CasoUsoEvento
 {
     public class AltaEvento : IAlta<EventoAltaDto>
     {
         IRepositorioEvento _repositorio;
+        IRepositorioAtleta _atletas;
 
-        public AltaEvento(IRepositorioEvento repositorio)
+        public AltaEvento(IRepositorioEvento repositorio, IRepositorioAtleta atletas)
         {
             _repositorio = repositorio;
+            _atletas = atletas;
         }
 
         public void Ejecutar(EventoAltaDto obj)
@@ -35,7 +38,27 @@ namespace ComiteLogicaAplicacion.CasoUso.Evento
             o Un evento deberá tener al menos tres atletas registrados.
             o Los atletas registrados deberán estar registrados para participar en la disciplina del evento.
              */
-            _repositorio.Add(EventoMapper.FromDto(obj));
+            Evento e = EventoMapper.FromDto(obj);
+            int cantidadAtletas = 0;
+            foreach (int atletaId in obj.AtletasIds)
+            {
+                Atleta a = _atletas.GetById(atletaId);
+                if (a != null) {
+                    if (!a.DisciplinasIds.Contains(obj.DisciplinaId))
+                    {
+                        throw new Exception("El atleta debe pertenecer a la disciplina del evento");
+                    }
+                    cantidadAtletas++;
+                    e.atletas.Add(a);
+                }
+            }
+            if (cantidadAtletas >= 3)
+            {
+                _repositorio.Add(e);
+            }
+            else {
+                throw new Exception("El evento debe tener al menos 3 atletas");
+            }
         }
     }
 }

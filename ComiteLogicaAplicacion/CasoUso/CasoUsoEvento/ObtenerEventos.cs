@@ -11,23 +11,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComiteLogicaAplicacion.CasoUso.Evento
+namespace ComiteLogicaAplicacion.CasoUso.CasoUsoEvento
 {
-    public class ObtenerEvento : IObtener<EventoAltaDto>
+    public class ObtenerEventos : IObtenerTodos<EventoListadoDto>
     {
         IRepositorioEvento _repositorio;
 
-        public ObtenerEvento(IRepositorioEvento repositorio)
+        public ObtenerEventos(IRepositorioEvento repositorio)
         {
             _repositorio = repositorio;
         }
-        public EventoAltaDto Ejecutar(int id)
+        public IEnumerable<EventoListadoDto> Ejecutar()
         {
-            return EventoMapper.ToDto(_repositorio.GetById(id));
-        }
-        public EventoAltaDto Ejecutar(string nombre)
-        {
-            return EventoMapper.ToDto(_repositorio.GetByName(nombre));
+            return EventoMapper.ToListaDto(_repositorio.GetAll());
         }
     }
 }
