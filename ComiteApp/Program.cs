@@ -12,7 +12,8 @@ using ComiteLogicaNegocio.CasoUso.Disciplinas;
 using ComiteLogicaNegocio.InterfacesRepositorio;
 using ComiteCompartido.Dtos.Atletas;
 using ComiteLogicaAplicacion.CasoUso.CasoUsoAtleta;
-
+using ComiteCompartido.Dtos.Eventos;
+using ComiteLogicaAplicacion.CasoUso.CasoUsoEvento;
 namespace ComiteApp
 {
     public class Program
@@ -29,6 +30,7 @@ namespace ComiteApp
             builder.Services.AddScoped<IRepositorioDisciplina, RepositorioDisciplina>();
             builder.Services.AddScoped<IRepositorioAtleta, RepositorioAtleta>();
             builder.Services.AddScoped<IRepositorioPais, RepositorioPais>();
+            builder.Services.AddScoped<IRepositorioEvento, RepositorioEvento>();
 
             // intetecto los caso de uso
             builder.Services.AddScoped<IAlta<UsuarioAltaDto>, AltaUsuario>();
@@ -45,6 +47,11 @@ namespace ComiteApp
             builder.Services.AddScoped<IObtenerTodos<AtletaListadoDto>, ObtenerAtletas>();
             builder.Services.AddScoped<IObtener<AtletaAltaDto>, ObtenerAtleta>();
             builder.Services.AddScoped<IEditar<AtletaAltaDto>, EditarAtleta>();
+
+            builder.Services.AddScoped<IObtenerTodos<EventoListadoDto>, ObtenerEventos>();
+            builder.Services.AddScoped<IObtener<EventoAltaDto>, ObtenerEvento>();
+            builder.Services.AddScoped<IAlta<EventoAltaDto>, AltaEvento>();
+
 
             // inyectando la Comite Contex
             builder.Services.AddDbContext<ComiteContext>();
