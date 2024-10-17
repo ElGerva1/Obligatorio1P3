@@ -10,18 +10,18 @@ namespace ComiteLogicaNegocio.Entidades
     {
         public int ID { get; set; }
         public Evento Evento { get; set; }
-
+        public int EventoId { get; set; }
         public Atleta Atleta { get; set; }
-
+        public int AtletaId { get; set; }
         public decimal Puntaje { get; set; }
 
         protected EventoAtleta() { }
 
-        public EventoAtleta(int iD, Evento evento, Atleta atleta, decimal puntaje)
+        public EventoAtleta(int iD, int evento, int atleta, decimal puntaje)
         {
             ID = iD;
-            Evento = evento;
-            Atleta = atleta;
+            EventoId = evento;
+            AtletaId = atleta;
             Puntaje = puntaje;
         }
     }

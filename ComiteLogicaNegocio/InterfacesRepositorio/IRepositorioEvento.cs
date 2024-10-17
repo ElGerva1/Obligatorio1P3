@@ -11,5 +11,6 @@ namespace ComiteLogicaNegocio.InterfacesRepositorio
     public interface IRepositorioEvento : IRepositorio<Evento>
     {
         Evento GetByName(string nombre);
+        public void AgregarAtletaAlEvento(Atleta atleta);
     }
 }
