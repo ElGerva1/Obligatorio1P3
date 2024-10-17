@@ -14,10 +14,45 @@ using ComiteCompartido.Dtos.Atletas;
 using ComiteLogicaAplicacion.CasoUso.CasoUsoAtleta;
 using ComiteCompartido.Dtos.Eventos;
 using ComiteLogicaAplicacion.CasoUso.CasoUsoEvento;
+using Microsoft.EntityFrameworkCore;
 namespace ComiteApp
 {
     public class Program
     {
+        public static void SeedData(ComiteContext _context)
+        {
+            if (_context.atletas.Any())
+            {
+                foreach (var atleta in _context.atletas.ToList())
+                {
+                    if (atleta.Disciplinas == null)
+                    {
+                        atleta.Disciplinas = new List<Disciplina> { };
+
+                        foreach (var disciplinaId in atleta.DisciplinasIds)
+                        {
+                            var disciplina = _context.disciplinas.Find(disciplinaId);
+                            if (disciplina != null)
+                            {
+                                try
+                                {
+                                    atleta.Disciplinas.Add(disciplina);
+                                    _context.SaveChanges();
+                                }
+                                catch (Exception)
+                                {
+                                    continue;
+                                }
+                                
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+        }
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -82,7 +117,15 @@ namespace ComiteApp
                 name: "default",
                 pattern: "{controller=Login}/{action=Login}/{id?}");
 
+            // Seed data
+            using (var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<ComiteContext>())
+            {
+                context.Database.Migrate(); // Ensure the database is up to date
+                SeedData(context); // Call your method to seed data
+            }
+
             app.Run();
         }
+       
     }
 }

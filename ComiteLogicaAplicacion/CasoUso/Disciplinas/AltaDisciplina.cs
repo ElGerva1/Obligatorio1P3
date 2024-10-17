@@ -19,7 +19,7 @@ namespace ComiteLogicaAplicacion.CasoUso.Disciplinas
 
         public void Ejecutar(DisciplinasAltaDto obj)
         {
-                _repositorio.Add(DisciplinaMapper.FromDto(obj));
+            _repositorio.Add(DisciplinaMapper.FromDto(obj));
         }
     }
 }

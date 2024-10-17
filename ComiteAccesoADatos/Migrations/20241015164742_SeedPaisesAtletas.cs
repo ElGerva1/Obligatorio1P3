@@ -30,29 +30,30 @@ namespace ComiteAccesoADatos.Migrations
             );
             migrationBuilder.InsertData(
             "atletas",
-            new[] { "ID", "Nombre", "Sexo", "PaisId" },
+            new[] { "ID", "Nombre", "Sexo", "PaisId", "DisciplinasIds" },
             new object[,]
             {
-                { 1, "Milton Winan", "M", 1 },
-                { 2, "Sofia Rodriguez", "F", 1 },
-                { 3, "Lucia Gomez", "F", 2 },
-                { 4, "Carlos Silva", "M", 2 },
-                { 5, "Ana Ruiz", "F", 3 },
-                { 6, "Pedro Martinez", "M", 3 },
-                { 7, "Sofia Torres", "F", 4 },
-                { 8, "Juan Herrera", "M", 4 },
-                { 9, "Maria Fernandez", "F", 5 },
-                { 10, "Luis Ramirez", "M", 5 },
-                { 11, "Clara Sanchez", "F", 6 },
-                { 12, "Miguel Alvarez", "M", 6 },
-                { 13, "Julia Castillo", "F", 7 },
-                { 14, "Roberto Perez", "M", 7 },
-                { 15, "Natalia Gomez", "F", 8 },
-                { 16, "Diego Lopez", "M", 8 },
-                { 17, "Isabella Torres", "F", 9 },
-                { 18, "Andres Jimenez", "M", 9 },
-                { 19, "Valentina Rojas", "F", 10 },
-                { 20, "Fernando Vasquez", "M", 10 }
+                { 1, "Milton Winan", "M", 1, "[1,2]" },
+                { 2, "Sofia Rodriguez", "F", 1, "[3]" },
+                { 3, "Lucia Gomez", "F", 2, "[4,5]" },
+                { 4, "Carlos Silva", "M", 2, "[6]" },
+                { 5, "Ana Ruiz", "F", 3, "[7,8]" },
+                { 6, "Pedro Martinez", "M", 3, "[9]" },
+                { 7, "Sofia Torres", "F", 4, "[10]" },
+                { 8, "Juan Herrera", "M", 4, "[1]" },
+                { 9, "Maria Fernandez", "F", 5, "[2]" },
+                { 10, "Luis Ramirez", "M", 5, "[3]" },
+                { 11, "Clara Sanchez", "F", 6, "[4]" },
+                { 12, "Miguel Alvarez", "M", 6, "[5]" },
+                { 13, "Julia Castillo", "F", 7, "[6]" },
+                { 14, "Roberto Perez", "M", 7, "[7]" },
+                { 15, "Natalia Gomez", "F", 8, "[8]" },
+                { 16, "Diego Lopez", "M", 8, "[9]" },
+                { 17, "Isabella Torres", "F", 9, "[10]" },
+                { 18, "Andres Jimenez", "M", 9, "[1]" },
+                { 19, "Valentina Rojas", "F", 10, "[2]" },
+                { 20, "Fernando Vasquez", "M", 10, "[3]" },
+                { 21, "Carlos López", "M", 1, "[1,3]" }
             }
             );
 

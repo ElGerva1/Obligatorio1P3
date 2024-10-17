@@ -39,6 +39,6 @@ namespace ComiteAccesoADatos.EF
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
         }
 
-
+        
     }
 }
