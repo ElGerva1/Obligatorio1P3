@@ -68,7 +68,10 @@ namespace ComiteAccesoADatos.EF
 
         public IEnumerable<Disciplina> GetAll()
         {
-            return _context.disciplinas.Include(d=>d.Atletas);
+            return _context.disciplinas
+               .Include(d => d.Atletas)
+               .OrderBy(d => d.Nombre)
+               .ToList();
         }
 
         public Disciplina GetById(int id)
