@@ -12,13 +12,13 @@
         <i class="bi bi-plus"></i> Agregar Nuevo evento
     </a>
 </p>
-<div  class="mb-3">
-    <label for="filterDate" class="form-label">Filtrar por Fecha:</label>
-    <input type="date" id="filterDate" class="form-control" style="width: auto; display: inline-block;" />
-    <a asp-action="Create" class="btn btn-primary">
-        <i class="bi bi-plus"></i> Filtrar
-    </a>
-</div>
+    <form method="get" asp-action="Index" class="mb-3">
+        <label for="filterDate" class="form-label">Filtrar por Fecha:</label>
+        <input type="date" name="filterDate" id="filterDate" class="form-control" style="width: auto; display: inline-block;" />
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-filter"></i> Filtrar
+        </button>
+    </form>
 </div>
 
 <table class="table">
@@ -57,7 +57,7 @@
                         @Html.DisplayFor(modelItem => item.NombreDisciplina)
                     </td>
                     <td>
-                        @Html.ActionLink("Agregar Puntajes", "Edit", new {  id=item.id })
+                        @Html.ActionLink("Agregar Puntajes", "Details", new {  id=item.id })
                     </td>
                 </tr>
                     }

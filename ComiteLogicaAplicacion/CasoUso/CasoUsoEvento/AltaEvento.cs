@@ -18,11 +18,13 @@ namespace ComiteLogicaAplicacion.CasoUso.CasoUsoEvento
     {
         IRepositorioEvento _repositorio;
         IRepositorioAtleta _atletas;
+        IRepositorioDisciplina _disciplinas;
 
-        public AltaEvento(IRepositorioEvento repositorio, IRepositorioAtleta atletas)
+        public AltaEvento(IRepositorioEvento repositorio, IRepositorioAtleta atletas, IRepositorioDisciplina disciplinas)
         {
             _repositorio = repositorio;
             _atletas = atletas;
+            _disciplinas = disciplinas;
         }
 
         public void Ejecutar(EventoAltaDto obj)
@@ -39,6 +41,8 @@ namespace ComiteLogicaAplicacion.CasoUso.CasoUsoEvento
             o Los atletas registrados deberán estar registrados para participar en la disciplina del evento.
              */
             Evento e = EventoMapper.FromDto(obj);
+            Disciplina d = _disciplinas.GetById(obj.DisciplinaId);
+            e.Disciplina = d;
             int cantidadAtletas = 0;
             foreach (int atletaId in obj.AtletasIds)
             {

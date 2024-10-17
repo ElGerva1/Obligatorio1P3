@@ -1,0 +1,70 @@
+﻿@model ComiteCompartido.Dtos.Eventos.EventoAltaDto
+
+@{
+    ViewData["Title"] = "Detalles del Evento";
+}
+
+<h3>Detalles del Evento</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Nombre</label>
+            <p>@Model.Nombre</p>
+        </div>
+        <div class="form-group">
+            <label>Inicio</label>
+            <p>@Model.Inicio.ToString("yyyy-MM-dd")</p>
+        </div>
+        <div class="form-group">
+            <label>Fin</label>
+            <p>@Model.Fin.ToString("yyyy-MM-dd")</p>
+        </div>
+        <div class="form-group">
+            <label>Disciplina</label>
+            <p>@ViewBag.Disciplina</p>
+        </div>
+    </div>
+</div>
+
+<h4>Atletas</h4>
+<form asp-action="AddPoints" method="post">
+    <input type="hidden" name="EventoId" value="@Model.id" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre del Atleta</th>
+                <th>Puntos</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Atletas!=null)
+            {
+                @foreach (var atleta in ViewBag.Atletas)
+                {
+                    <tr>
+                        <td>@atleta.Nombre</td>
+                        <td>
+                            <input type="number" name="Atletas[@atleta.id].Puntos" class="form-control" />
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Guardar Puntos" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -2,6 +2,7 @@
 using ComiteCompartido.Dtos.Eventos;
 using ComiteCompartido.Dtos.Mappers;
 using ComiteCompartido.Dtos.MappersDisciplina;
+using ComiteLogicaNegocio.Entidades;
 using ComiteLogicaNegocio.InterfacesCasoUso;
 using ComiteLogicaNegocio.InterfacesRepositorio;
 using ComiteLogicaNegocio.InterfacesRepositorios;
@@ -23,7 +24,9 @@ namespace ComiteLogicaAplicacion.CasoUso.CasoUsoEvento
         }
         public EventoAltaDto Ejecutar(int id)
         {
-            return EventoMapper.ToDto(_repositorio.GetById(id));
+            Evento e = _repositorio.GetById(id);
+            EventoAltaDto edto = EventoMapper.ToDto(e);
+            return edto; 
         }
         public EventoAltaDto Ejecutar(string nombre)
         {

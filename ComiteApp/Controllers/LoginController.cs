@@ -18,9 +18,11 @@ namespace ComiteApp.Controllers
             _obtenerUno = obtenerUno;
         }
 
-        public IActionResult Login(string message)
+        [HttpGet]
+        public IActionResult Login(string message, string sucessMessage, string s)
         {
             ViewBag.Message = message;
+            ViewBag.sucessMessage = sucessMessage;
             return View();
         }
 
@@ -53,8 +55,6 @@ namespace ComiteApp.Controllers
                 return Redirect("/digitador/index");
             }
         }
-
-
 
         [HttpGet]
         public IActionResult Logout()

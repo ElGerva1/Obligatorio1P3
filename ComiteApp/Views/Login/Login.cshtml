@@ -1,31 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<form method="post">
-    <div>
-        <input type="text" name="email" placeholder="Email" />
-        <input type="text" name="password" placeholder="password" />
-        <button type="submit">Login</button>
+﻿<div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
+    <div style="margin-bottom: 1.5rem;">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/2024_Summer_Olympics_logo.svg/220px-2024_Summer_Olympics_logo.svg.png"
+             alt="Olympic Logo" style="width: 250px; height: 250px; object-fit: contain;" />
     </div>
-</form>
-<div>
-    <p>
-        Usuario Administrador por defecto:
-        <ul>
-            <li>Email: admin@admin.com</li>
-            <li>Password: Admin.123</li>
-        </ul>
-    </p>
-</div>
-<div>
-    <p>
-        Usuario Digitador por defecto:
-        <ul>
-            <li>Email: digitador@digitador.com</li>
-            <li>Password: Digitador.123</li>
-        </ul>
-    </p>
+    <h2 style="margin-bottom: 1.5rem;">Login</h2>
+    <form method="post">
+        <div style="margin-bottom: 1rem;">
+            <input type="text" name="email" style="width: 100%; padding: 0.5rem;" placeholder="Email" required />
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <input type="password" name="password" style="width: 100%; padding: 0.5rem;" placeholder="Password" required />
+        </div>
+        <button type="submit" style="width: 100%; padding: 0.5rem; background-color: #007bff; color: white; border: none; border-radius: 0.25rem;">Login</button>
+    </form>
+    <div style="margin-top: 1.5rem;">
+        <p style="color: #6c757d;">
+            Usuario Administrador por defecto:
+            <ul style="list-style-type: none; padding: 0;">
+                <li>Email: admin@admin.com</li>
+                <li>Password: Admin.123</li>
+            </ul>
+        </p>
+        <p style="color: #6c757d;">
+            Usuario Digitador por defecto:
+            <ul style="list-style-type: none; padding: 0;">
+                <li>Email: digitador@digitador.com</li>
+                <li>Password: Digitador.123</li>
+            </ul>
+        </p>
+    </div>
 </div>

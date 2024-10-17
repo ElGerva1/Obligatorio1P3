@@ -20,7 +20,7 @@ namespace ComiteCompartido.Dtos.Mappers
         {
             return new EventoAltaDto(
                 evento.ID,
-                evento.Disciplina.ID,
+                evento.DisciplinaId,
                 evento.Nombre,
                 evento.Inicio,
                 evento.Fin,

@@ -36,10 +36,12 @@ namespace ComiteApp.Controllers
 
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string message, string sucessMessage)
         {
             try
             {
+                ViewBag.Message = message;
+                ViewBag.sucessMessage = sucessMessage;
                 return View(_obtenerTodos.Ejecutar());
 
             } catch (Exception e) {
@@ -60,7 +62,7 @@ namespace ComiteApp.Controllers
             try
             {
                 _alta.Ejecutar(usuario);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { sucessMessage = "Usuario creado con exito" });
             }
             catch (Exception e)
             {
@@ -111,7 +113,7 @@ namespace ComiteApp.Controllers
                     ViewBag.Message = e.Message;
                     return View();
                 } 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { sucessMessage = "Usuario editado con exito" });
 
         }
 

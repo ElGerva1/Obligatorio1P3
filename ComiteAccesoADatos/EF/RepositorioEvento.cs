@@ -50,12 +50,12 @@ namespace ComiteAccesoADatos.EF
         {
             Evento? e = null;
             e =
-                _context.eventos
+                _context.eventos.Include(e=>e.atletas)
             .AsEnumerable()
                 .FirstOrDefault(e => e.ID == id);
             if (e == null)
             {
-                throw new Exception($"No se encontro la discipina con id {id}");
+                throw new Exception($"No se encontro el evento con id {id}");
             }
             return e;
         }

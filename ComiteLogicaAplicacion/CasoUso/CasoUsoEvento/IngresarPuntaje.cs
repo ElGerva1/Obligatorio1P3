@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ComiteLogicaAplicacion.CasoUso.CasoUsoEvento
 {
-    internal class IngresarPuntaje
+    public class IngresarPuntaje
     {
     }
 }
