@@ -21,6 +21,7 @@ namespace ComiteApp
     {
         public static void SeedData(ComiteContext _context)
         {
+            // TO-DO: Refactor de las relaciones en EF para poder insertar en la tabla intermedia y no tener que hacer esto
             if (_context.atletas.Any())
             {
                 foreach (var atleta in _context.atletas.ToList())

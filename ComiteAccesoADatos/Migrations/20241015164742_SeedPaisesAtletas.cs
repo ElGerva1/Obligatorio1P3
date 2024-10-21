@@ -34,12 +34,12 @@ namespace ComiteAccesoADatos.Migrations
             new object[,]
             {
                 { 1, "Milton Winan", "M", 1, "[1,2]" },
-                { 2, "Sofia Rodriguez", "F", 1, "[3]" },
-                { 3, "Lucia Gomez", "F", 2, "[4,5]" },
-                { 4, "Carlos Silva", "M", 2, "[6]" },
-                { 5, "Ana Ruiz", "F", 3, "[7,8]" },
-                { 6, "Pedro Martinez", "M", 3, "[9]" },
-                { 7, "Sofia Torres", "F", 4, "[10]" },
+                { 2, "Sofia Rodriguez", "F", 1, "[1,3]" },
+                { 3, "Lucia Gomez", "F", 2, "[1,4,5]" },
+                { 4, "Carlos Silva", "M", 2, "[1,6]" },
+                { 5, "Ana Ruiz", "F", 3, "[1,7,8]" },
+                { 6, "Pedro Martinez", "M", 3, "[1,9]" },
+                { 7, "Sofia Torres", "F", 4, "[1,10]" },
                 { 8, "Juan Herrera", "M", 4, "[1]" },
                 { 9, "Maria Fernandez", "F", 5, "[2]" },
                 { 10, "Luis Ramirez", "M", 5, "[3]" },
