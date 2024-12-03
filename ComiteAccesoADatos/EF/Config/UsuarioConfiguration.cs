@@ -10,7 +10,7 @@ using ComiteLogicaNegocio.Vo.Generic;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Reflection.Emit;
 
-namespace Libreria.LogicaAccesoDatos.EF.Config
+namespace ComiteAccesoDatos.EF.Config
 {
     public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
     {
@@ -35,7 +35,6 @@ namespace Libreria.LogicaAccesoDatos.EF.Config
                 v => new Password(v)
              );
             builder.Property(a => a.Password).HasConversion(passwordConvert);
-            builder.HasIndex(a => a.Password).IsUnique();
         }
     }
 }

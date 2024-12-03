@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ComiteCompartido.Dtos.Eventos.EventoListadoDto>
+
+@{
+    ViewData["Title"] = "List";
+}
+<h3>Lista de eventos</h3>
+<div class="mb-6">
+
+
+<p>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus"></i> Agregar Nuevo evento
+    </a>
+</p>
+    <form method="get" asp-action="Index" class="mb-3">
+        <label for="filterDate" class="form-label">Filtrar por Fecha:</label>
+        <input type="date" name="filterDate" id="filterDate" class="form-control" style="width: auto; display: inline-block;" />
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-filter"></i> Filtrar
+        </button>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreDisciplina)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null) {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Inicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreDisciplina)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Agregar Puntajes", "Details", new {  id=item.id })
+                    </td>
+                </tr>
+                    }
+       
+            }
+    </tbody>
+</table>
