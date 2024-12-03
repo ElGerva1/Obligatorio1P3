@@ -1,0 +1,51 @@
+﻿@using ComiteCompartido.Dtos.Atletas
+@model IEnumerable<AtletaListadoDto>
+
+@{
+    ViewData["Title"] = "Atletas";
+}
+
+<h3>Lista de Atletas Olimpicos</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                Año
+            </th>
+            <th>Pais</th>
+            <th>Disciplinas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombrePais)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var disciplina in item.Disciplinas)
+                        {
+                            <li>@disciplina</li> <!-- Assuming 'Nombre' is a property of Disciplina -->
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

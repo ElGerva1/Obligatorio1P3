@@ -18,8 +18,11 @@ namespace ComiteLogicaAplicacion.CasoUso.Usuarios
 
         public void Ejecutar(UsuarioAltaDto obj)
         {
-
-            _repositorio.Add(UsuarioMapper.FromDto(obj));
+                if (obj.Discriminator == "Admin")
+                {
+                    _repositorio.Add(UsuarioMapper.FromDtoToAdmin(obj));
+                }
+                _repositorio.Add(UsuarioMapper.FromDto(obj));
         }
     }
 }

@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Filtrar Atletas por Disciplina";
+    var disciplinas = ViewBag.Disciplinas as List<WebCliente.Models.Dtos.Disciplinas.DisciplinasListadoDto>;
+    var atletas = ViewBag.Atletas as List<WebCliente.Models.Dtos.Atletas.AtletaListadoDto>;
+}
+
+<h1>Filtrar Atletas por Disciplina</h1>
+
+<div class="form-group">
+    <label for="disciplinaDropdown">Selecciona una Disciplina:</label>
+    <select id="disciplinaDropdown" class="form-control">
+        <option value="" disabled selected>-- Selecciona una Disciplina --</option>
+        @foreach (var disciplina in disciplinas)
+        {
+            <option value="@disciplina.Id">
+                @disciplina.Nombre
+            </option>
+        }
+    </select>
+</div>
+
+<button id="filterButton" class="btn btn-primary">Filtrar Atletas</button>
+
+@if (atletas != null && atletas.Count > 0)
+{
+    <h2>Atletas Registrados</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre Completo</th>
+                <th>Sexo</th>
+                <th>País</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var atleta in atletas)
+            {
+                <tr>
+                    <td>@atleta.id</td>
+                    <td>@atleta.Nombre</td>
+                    <td>@atleta.Sexo</td>
+                    <td>@atleta.NombrePais</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else if (ViewBag.SelectedDisciplinaId != null)
+{
+    <p>No se encontraron atletas para esta disciplina.</p>
+}
+else
+{
+    <p>Por favor, selecciona una disciplina para ver sus atletas.</p>
+}
+
+<script>
+    document.getElementById('filterButton').addEventListener('click', function () {
+        const disciplinaId = document.getElementById('disciplinaDropdown').value;
+        if (disciplinaId) {
+            window.location.href = `?id=${disciplinaId}`;
+        } else {
+            alert("Por favor, selecciona una disciplina.");
+        }
+    });
+</script>

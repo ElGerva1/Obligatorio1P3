@@ -11,6 +11,19 @@ namespace ComiteAccesoADatos.EF
         public DbSet<Admin> admins { get; set; }
 
         public DbSet<Digitador> digitadores { get; set; }
+
+        public DbSet<Disciplina> disciplinas { get; set; }
+
+        public DbSet<Pais> paises { get; set; }
+
+        public DbSet<Atleta> atletas { get; set; }
+
+        public DbSet<Evento> eventos { get; set; }
+
+        public DbSet<EventoAtleta> eventosAtletas { get; set; }
+
+        public DbSet<Log> Logs { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -28,6 +41,6 @@ namespace ComiteAccesoADatos.EF
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
         }
 
-
+        
     }
 }

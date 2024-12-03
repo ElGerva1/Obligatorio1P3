@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Filtrar Eventos";
+    var eventos = ViewBag.Eventos as List<WebCliente.Models.Dtos.Eventos.EventoDto>;
+}
+
+<h1>Filtrar Eventos</h1>
+
+<form method="get" action="/Evento/Index" class="form-inline mb-3">
+    <div class="form-group mr-2">
+        <label for="disciplinaId" class="mr-2">Disciplina ID:</label>
+        <input type="number" name="disciplinaId" id="disciplinaId" class="form-control" placeholder="ID Disciplina" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="fechaInicio" class="mr-2">Fecha Inicio:</label>
+        <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="fechaFin" class="mr-2">Fecha Fin:</label>
+        <input type="date" name="fechaFin" id="fechaFin" class="form-control" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="nombreEvento" class="mr-2">Nombre Evento:</label>
+        <input type="text" name="nombreEvento" id="nombreEvento" class="form-control" placeholder="Nombre Evento" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="puntajeMinimo" class="mr-2">Puntaje Mínimo:</label>
+        <input type="number" name="puntajeMinimo" id="puntajeMinimo" class="form-control" placeholder="Min" />
+    </div>
+    <div class="form-group mr-2">
+        <label for="puntajeMaximo" class="mr-2">Puntaje Máximo:</label>
+        <input type="number" name="puntajeMaximo" id="puntajeMaximo" class="form-control" placeholder="Max" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(ViewBag.mensaje))
+{
+    <div class="alert @(ViewBag.error ? "alert-danger" : "alert-success")">
+        @ViewBag.mensaje
+    </div>
+}
+
+@if (eventos != null && eventos.Count > 0)
+{
+    <h2>Lista de Eventos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Disciplina</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var evento in eventos)
+            {
+                var collapseId = $"collapse{evento.Id}";
+                <tr>
+                    <td>@evento.Id</td>
+                    <td>@evento.Nombre</td>
+                    <td>@evento.NombreDisciplina</td>
+                    <td>@evento.Inicio.ToString("yyyy-MM-dd")</td>
+                    <td>@evento.Fin.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                            Ver Puntajes
+                        </button>
+                    </td>
+                </tr>
+                <tr class="collapse" id="@collapseId">
+                    <td colspan="6">
+                        @if (evento.Puntajes != null && evento.Puntajes.Any())
+                        {
+                            <div class="card card-body">
+                                <h5>Puntajes</h5>
+                                <ul class="list-group">
+                                    @foreach (var puntaje in evento.Puntajes)
+                                    {
+                                        <li class="list-group-item">
+                                            <strong>Atleta:</strong> @puntaje.Atleta.Nombre (@puntaje.Atleta.Sexo) - <strong>Puntaje:</strong> @puntaje.Puntaje
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card card-body">
+                                <p>No hay puntajes registrados para este evento.</p>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se encontraron eventos.</p>
+}

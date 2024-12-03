@@ -8,145 +8,120 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using ComiteCompartido.Dtos.Usuarios;
 using Microsoft.EntityFrameworkCore;
+using ComiteCompartido.Dtos.Disciplinas;
 
 namespace ComiteApp.Controllers
 {
     public class DigitadorController : Controller
     {
-        IAlta<UsuarioAltaDto> _alta;
-        IObtenerTodos<UsuarioListadoDto> _obtenerTodos;
-        IObtener<UsuarioAltaDto> _obtenerID;
-        IEliminar<UsuarioAltaDto> _eliminar;
-        IEditar<UsuarioAltaDto> _editar;
-
+        IObtenerTodos<DisciplinasListadoDto> _obtenerTodas;
+        IAlta<DisciplinasAltaDto> _alta;
+        IObtener<DisciplinasAltaDto> _obtenerID;
+        IEliminar<DisciplinasAltaDto> _eliminar;
         public DigitadorController(
-            IAlta<UsuarioAltaDto> alta,
-            IObtenerTodos<UsuarioListadoDto> obtenerTodos,
-            IObtener<UsuarioAltaDto> obtenerID,
-            IEliminar<UsuarioAltaDto> eliminar,
-            IEditar<UsuarioAltaDto> editar
-            )
-        {
+            IObtenerTodos<DisciplinasListadoDto> obtenerTodas,
+            IAlta<DisciplinasAltaDto> alta,
+            IObtener<DisciplinasAltaDto> obtenerID,
+            IEliminar<DisciplinasAltaDto> eliminar)
+        { 
+            _obtenerTodas = obtenerTodas;
             _alta = alta;
-            _obtenerTodos = obtenerTodos;
             _obtenerID = obtenerID;
             _eliminar = eliminar;
-            _editar = editar;
-        }
-
-
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View(_obtenerTodos.Ejecutar());
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Index(string message)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(UsuarioAltaDto usuario)
-        {
+            ViewBag.Message = message;
             try
             {
-                _alta.Ejecutar(usuario);
-                return RedirectToAction("Index");
+                return View(_obtenerTodas.Ejecutar());
             }
             catch (Exception e)
             {
                 ViewBag.Message = e.Message;
+                return View();
             }
-            return View(usuario);
-
+            
         }
-
-        // GET: Digitadors/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        [HttpGet]
+        public IActionResult Disciplinas(string message)
         {
-            if (id == null)
+            ViewBag.Message = message;
+            try
             {
-                return NotFound();
+                return View(_obtenerTodas.Ejecutar());
             }
-
-            var digitador = _obtenerID.Ejecutar(id);
-            if (digitador == null)
+            catch (Exception e)
             {
-                return NotFound();
+                ViewBag.Message = e.Message;
+                return View();
             }
-            return View(digitador);
+            
         }
-
-        // POST: Digitadors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, UsuarioAltaDto digitador)
+        public IActionResult CrearDisciplina(DisciplinasAltaDto disciplina)
         {
-            if (id != digitador.Id)
+            try
             {
-                return NotFound();
+                _alta.Ejecutar(disciplina);
+                return RedirectToAction("Disciplinas");
             }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return RedirectToAction("Disciplinas", new { message = e.Message });
+            }
+            
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _editar.Ejecutar(digitador);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DigitadorExists(digitador.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            return View(digitador);
         }
-
-        // GET: Digitadors/Delete/5
+        // GET: Digitador/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var digitador = _obtenerID.Ejecutar(id);
-            if (digitador == null)
+                var Usuario = _obtenerID.Ejecutar(id);
+                if (Usuario == null)
+                {
+                    return NotFound();
+                }
+
+                return View(Usuario);
+            }
+            catch (Exception e)
             {
-                return NotFound();
+                ViewBag.Message = e.Message;
+                return View();
             }
-
-            return View(digitador);
         }
 
-        // POST: Digitadors/Delete/5
+        // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var digitador = _obtenerID.Ejecutar(id);
-            if (digitador != null)
+            try
             {
-                _editar.Ejecutar(digitador);
+                var Usuario = _obtenerID.Ejecutar(id);
+                if (Usuario != null)
+                {
+                    _eliminar.Ejecutar(Usuario);
+                }
+                return RedirectToAction("Disciplinas");
             }
-            return RedirectToAction("Index");
-        }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
+            }
 
-        private bool DigitadorExists(int id)
-        {
-            var digitador = _obtenerID.Ejecutar(id);
-            return digitador != null;
         }
     }
+
 }

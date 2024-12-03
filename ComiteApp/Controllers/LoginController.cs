@@ -18,9 +18,11 @@ namespace ComiteApp.Controllers
             _obtenerUno = obtenerUno;
         }
 
-        public IActionResult Login(string message)
+        [HttpGet]
+        public IActionResult Login(string message, string sucessMessage, string s)
         {
             ViewBag.Message = message;
+            ViewBag.sucessMessage = sucessMessage;
             return View();
         }
 
@@ -41,10 +43,10 @@ namespace ComiteApp.Controllers
 
             HttpContext.Session.SetString("mail", usuario.Email);
 
-            if (usuario.isAdmin == true)
+            if (usuario.Discriminator == "Admin")
             {
                 HttpContext.Session.SetString("rol", "admin");
-                return Redirect("/digitador/index");
+                return Redirect("/usuario/index");
                 
             }
             else
@@ -53,8 +55,6 @@ namespace ComiteApp.Controllers
                 return Redirect("/digitador/index");
             }
         }
-
-
 
         [HttpGet]
         public IActionResult Logout()

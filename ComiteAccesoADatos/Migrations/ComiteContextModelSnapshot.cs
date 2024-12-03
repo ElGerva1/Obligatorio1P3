@@ -17,10 +17,187 @@ namespace ComiteAccesoADatos.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("AtletaDisciplina", b =>
+                {
+                    b.Property<int>("AtletasID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DisciplinasID")
+                        .HasColumnType("int");
+
+                    b.HasKey("AtletasID", "DisciplinasID");
+
+                    b.HasIndex("DisciplinasID");
+
+                    b.ToTable("AtletaDisciplina");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("DisciplinasIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaisId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PaisId");
+
+                    b.ToTable("atletas");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Disciplina", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("disciplinas");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Evento", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("DisciplinaId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Fin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Inicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DisciplinaId");
+
+                    b.ToTable("eventos");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.EventoAtleta", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AtletaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventoId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Puntaje")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AtletaId");
+
+                    b.HasIndex("EventoId");
+
+                    b.ToTable("eventosAtletas");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Log", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Operation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Pais", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CantidadHabitantes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreContacto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombrePais")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelefonoContacto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("paises");
+                });
 
             modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Usuario", b =>
                 {
@@ -41,7 +218,7 @@ namespace ComiteAccesoADatos.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("fecRegistro")
                         .HasColumnType("datetime2");
@@ -49,9 +226,6 @@ namespace ComiteAccesoADatos.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("Password")
                         .IsUnique();
 
                     b.ToTable("usuarios");
@@ -73,6 +247,72 @@ namespace ComiteAccesoADatos.Migrations
                     b.HasBaseType("ComiteLogicaNegocio.Entidades.Usuario");
 
                     b.HasDiscriminator().HasValue("Digitador");
+                });
+
+            modelBuilder.Entity("AtletaDisciplina", b =>
+                {
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Atleta", null)
+                        .WithMany()
+                        .HasForeignKey("AtletasID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Disciplina", null)
+                        .WithMany()
+                        .HasForeignKey("DisciplinasID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
+                {
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Pais", "Pais")
+                        .WithMany()
+                        .HasForeignKey("PaisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pais");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Evento", b =>
+                {
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Disciplina", "Disciplina")
+                        .WithMany()
+                        .HasForeignKey("DisciplinaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Disciplina");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.EventoAtleta", b =>
+                {
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Atleta", "Atleta")
+                        .WithMany("EventoAtletas")
+                        .HasForeignKey("AtletaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ComiteLogicaNegocio.Entidades.Evento", "Evento")
+                        .WithMany("EventoAtletas")
+                        .HasForeignKey("EventoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Atleta");
+
+                    b.Navigation("Evento");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Atleta", b =>
+                {
+                    b.Navigation("EventoAtletas");
+                });
+
+            modelBuilder.Entity("ComiteLogicaNegocio.Entidades.Evento", b =>
+                {
+                    b.Navigation("EventoAtletas");
                 });
 #pragma warning restore 612, 618
         }

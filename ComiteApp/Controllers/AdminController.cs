@@ -25,7 +25,14 @@ namespace Libreria.WebMvc.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_obtenerTodos.Ejecutar());
+            try {
+                var todos = _obtenerTodos.Ejecutar();
+                return View(todos);
+            } catch (Exception e) {
+                ViewBag.Message = e.Message;
+                return View();
+            }
+            
         }
     }
 }
