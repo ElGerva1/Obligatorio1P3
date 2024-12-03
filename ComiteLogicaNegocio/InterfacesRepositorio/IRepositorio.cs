@@ -6,5 +6,8 @@ namespace ComiteLogicaNegocio.InterfacesRepositorios
         void Add(T obj);
         T GetById(int id);
         IEnumerable<T> GetAll();
+        void Delete(T obj);
+        void Edit(T obj);
+
     }
 }

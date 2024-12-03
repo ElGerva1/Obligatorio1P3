@@ -7,18 +7,18 @@ using ComiteLogicaNegocio.InterfacesRepositorios;
 
 namespace ComiteLogicaAplicacion.CasoUso.Usuarios
 {
-    public class AltaUsuario : IAlta<UsuarioAltaDto>
+    public class EditarUsuario : IEditar<UsuarioAltaDto>
     {
         IRepositorioUsuario _repositorio;
 
-        public AltaUsuario(IRepositorioUsuario repositorio) 
+        public EditarUsuario(IRepositorioUsuario repositorio) 
         {
             _repositorio = repositorio;
         }
 
         public void Ejecutar(UsuarioAltaDto obj)
         {
-            _repositorio.Add(UsuarioMapper.FromDto(obj));
+            _repositorio.Edit(UsuarioMapper.FromDto(obj));
         }
     }
 }

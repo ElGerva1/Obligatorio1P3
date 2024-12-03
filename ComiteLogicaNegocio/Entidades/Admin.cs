@@ -9,6 +9,10 @@ namespace ComiteLogicaNegocio.Entidades
 {
     public class Admin : Usuario
     {
+        protected Admin()
+        {
+        }
+
         public Admin(int id, string email, string password) : base(id, new Email(email), new Password(password))
         {
         }
